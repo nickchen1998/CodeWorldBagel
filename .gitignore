@@ -1,0 +1,36 @@
+# 環境變數 (包含敏感資訊)
+.env
+.env.local
+.env.*.local
+
+# n8n 運行資料
+n8n_data/
+
+# macOS 系統檔案
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE 設定
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code 本地設定
+.claude/
+
+# Nuxt.js (web 目錄)
+web/node_modules/
+web/.nuxt/
+web/.output/
+web/dist/
+
+# 日誌檔案
+*.log
+logs/
+
+# 暫存檔案
+*.tmp
+*.temp

@@ -1,0 +1,87 @@
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - nuxt
+      - n8n
+    networks:
+      - code_world_bagel
+
+  nuxt:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+      - "3000"
+    networks:
+      - code_world_bagel
+
+  n8n:
+    image: n8nio/n8n:latest
+    restart: always
+    expose:
+      - "5678"
+    env_file:
+      - ./.env
+    environment:
+      - EXECUTIONS_MODE=queue
+      - N8N_PROCESS=main
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=${POSTGRES_HOST}
+      - DB_POSTGRESDB_PORT=${POSTGRES_PORT}
+      - DB_POSTGRESDB_DATABASE=N8N
+      - DB_POSTGRESDB_USER=${POSTGRES_USER}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+      - QUEUE_BULL_REDIS_HOST=${REDIS_HOST}
+      - QUEUE_BULL_REDIS_PORT=${REDIS_PORT}
+      - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
+      - QUEUE_BULL_REDIS_DB=${REDIS_DB}
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=code-world-bagel.com
+      - N8N_PROTOCOL=https
+      - N8N_PATH=/n8n/
+      - WEBHOOK_URL=https://code-world-bagel.com/n8n
+      - N8N_TRUST_PROXY=true
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    networks:
+      - code_world_bagel
+
+  n8n-worker:
+    image: n8nio/n8n:latest
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - EXECUTIONS_MODE=queue
+      - N8N_PROCESS=worker
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=${POSTGRES_HOST}
+      - DB_POSTGRESDB_PORT=${POSTGRES_PORT}
+      - DB_POSTGRESDB_DATABASE=N8N
+      - DB_POSTGRESDB_USER=${POSTGRES_USER}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+      - QUEUE_BULL_REDIS_HOST=${REDIS_HOST}
+      - QUEUE_BULL_REDIS_PORT=${REDIS_PORT}
+      - QUEUE_BULL_REDIS_PASSWORD=${REDIS_PASSWORD}
+      - QUEUE_BULL_REDIS_DB=${REDIS_DB}
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=code-world-bagel.com
+      - N8N_PROTOCOL=https
+      - N8N_PATH=/n8n/
+      - WEBHOOK_URL=https://code-world-bagel.com/n8n
+      - N8N_TRUST_PROXY=true
+    networks:
+      - code_world_bagel
+
+networks:
+  code_world_bagel:
+    name: code_world_bagel
