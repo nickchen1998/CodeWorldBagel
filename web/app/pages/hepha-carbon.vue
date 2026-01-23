@@ -9,26 +9,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const heroImages = [
-  '/images/hepha-carbon/hero.png'
-  // 新增更多圖片: '/images/hepha-carbon/hero-2.png'
-]
-
-const currentSlide = ref(0)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  if (heroImages.length > 1) {
-    intervalId = setInterval(() => {
-      currentSlide.value = (currentSlide.value + 1) % heroImages.length
-    }, 4000)
-  }
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
-
 const scopes = [
   {
     tag: '範疇一 Scope 1',
@@ -69,15 +49,7 @@ const features = [
   }
 ]
 
-const currentPlan = ref(0)
-
-function prevPlan() {
-  currentPlan.value = (currentPlan.value - 1 + plans.length) % plans.length
-}
-
-function nextPlan() {
-  currentPlan.value = (currentPlan.value + 1) % plans.length
-}
+const showComingSoon = ref(false)
 
 const plans = [
   {
@@ -115,6 +87,16 @@ const plans = [
     ctaHref: 'mailto:hephacarbon@gmail.com?subject=Pro 方案諮詢'
   }
 ]
+
+const currentPlan = ref(0)
+
+function prevPlan() {
+  currentPlan.value = (currentPlan.value - 1 + plans.length) % plans.length
+}
+
+function nextPlan() {
+  currentPlan.value = (currentPlan.value + 1) % plans.length
+}
 </script>
 
 <template>
@@ -125,35 +107,16 @@ const plans = [
       <div class="container">
         <div class="hc-hero-content">
           <div class="hc-hero-badge">中小企業碳盤查推手</div>
-          <h1 class="hc-hero-title">驅動企業永續轉型</h1>
-          <p class="hc-hero-subtitle">碳盤查智慧系統</p>
-          <p class="hc-hero-tagline">
-            從冷媒逸散到電力消耗的<strong>排放源追蹤</strong>，到活化數據與決策建議的<strong>報表產出</strong>。<br>
-            我們提供最靈活的碳盤查解決方案，讓數據為您的永續目標加值。
-          </p>
-          <a :href="plans[0].ctaHref" class="btn btn-primary hc-hero-btn hc-hero-btn-desktop">免費試用</a>
+          <h1 class="hc-hero-title">話燒碳盤查系統</h1>
+          <p class="hc-hero-subtitle">HephaCarbon</p>
+          <p class="hc-hero-tagline">驅動企業永續轉型的碳盤查智慧系統，從冷媒逸散到電力消耗的<strong>排放源追蹤</strong>，到數據視覺化與決策建議的<strong>報表產出</strong>。</p>
+          <button class="btn btn-primary hc-hero-btn hc-hero-btn-desktop" @click="showComingSoon = true">免費試用</button>
         </div>
         <div class="hc-hero-screenshot">
-          <div class="hc-carousel">
-            <img
-              v-for="(src, index) in heroImages"
-              :key="src"
-              :src="src"
-              :class="{ active: index === currentSlide }"
-              alt="話燒碳盤查系統產品截圖"
-              class="hc-carousel-slide"
-            />
+          <div class="hc-coming-soon-placeholder">
+            <span class="hc-coming-soon-text">Coming Soon ~</span>
           </div>
-          <div v-if="heroImages.length > 1" class="hc-carousel-dots">
-            <button
-              v-for="(_, index) in heroImages"
-              :key="index"
-              :class="{ active: index === currentSlide }"
-              class="hc-carousel-dot"
-              @click="currentSlide = index"
-            />
-          </div>
-          <a :href="plans[0].ctaHref" class="btn btn-primary hc-hero-btn hc-hero-btn-mobile">免費試用</a>
+          <button class="btn btn-primary hc-hero-btn hc-hero-btn-mobile" @click="showComingSoon = true">免費試用</button>
         </div>
       </div>
     </section>
@@ -223,50 +186,80 @@ const plans = [
       <div class="container">
         <h2 class="hc-section-title">選擇適合您的方案</h2>
         <p class="hc-section-subtitle">無論企業規模大小，我們都有適合的方案協助您開始碳盤查</p>
-        <div class="hc-pricing-carousel">
-          <button class="hc-pricing-arrow hc-pricing-arrow-left" @click="prevPlan" aria-label="上一個方案">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <div class="hc-pricing-card" :class="{ featured: plans[currentPlan].featured }">
-            <div v-if="plans[currentPlan].featured" class="hc-pricing-badge">{{ plans[currentPlan].featuredLabel }}</div>
-            <h3 class="hc-pricing-name">{{ plans[currentPlan].name }}</h3>
-            <p class="hc-pricing-subtitle">{{ plans[currentPlan].subtitle }}</p>
+
+        <!-- Desktop: grid -->
+        <div class="hc-pricing-grid">
+          <div v-for="plan in plans" :key="plan.name" class="hc-pricing-card" :class="{ featured: plan.featured }">
+            <div v-if="plan.featured" class="hc-pricing-badge">{{ plan.featuredLabel }}</div>
+            <h3 class="hc-pricing-name">{{ plan.name }}</h3>
+            <p class="hc-pricing-subtitle">{{ plan.subtitle }}</p>
             <div class="hc-pricing-price">
-              <span class="hc-price-value">{{ plans[currentPlan].price }}</span>
-              <span v-if="plans[currentPlan].priceUnit" class="hc-price-unit">{{ plans[currentPlan].priceUnit }}</span>
+              <span class="hc-price-value">{{ plan.price }}</span>
+              <span v-if="plan.priceUnit" class="hc-price-unit">{{ plan.priceUnit }}</span>
             </div>
             <ul class="hc-pricing-features">
-              <li v-for="item in plans[currentPlan].included" :key="item" class="included">
+              <li v-for="item in plan.included" :key="item" class="included">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 {{ item }}
               </li>
-              <li v-for="item in plans[currentPlan].excluded" :key="item" class="excluded">
+              <li v-for="item in plan.excluded" :key="item" class="excluded">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 {{ item }}
               </li>
             </ul>
-            <a :href="plans[currentPlan].ctaHref" class="btn hc-pricing-btn" :class="plans[currentPlan].featured ? 'btn-primary' : 'btn-outline'">{{ plans[currentPlan].cta }}</a>
           </div>
-          <button class="hc-pricing-arrow hc-pricing-arrow-right" @click="nextPlan" aria-label="下一個方案">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
-        <div class="hc-pricing-dots">
-          <button
-            v-for="(plan, index) in plans"
-            :key="plan.name"
-            :class="{ active: index === currentPlan }"
-            class="hc-pricing-dot"
-            @click="currentPlan = index"
-          />
+
+        <!-- Mobile: carousel -->
+        <div class="hc-pricing-mobile">
+          <div class="hc-pricing-carousel">
+            <button class="hc-pricing-arrow" @click="prevPlan" aria-label="上一個方案">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div class="hc-pricing-card" :class="{ featured: plans[currentPlan].featured }">
+              <div v-if="plans[currentPlan].featured" class="hc-pricing-badge">{{ plans[currentPlan].featuredLabel }}</div>
+              <h3 class="hc-pricing-name">{{ plans[currentPlan].name }}</h3>
+              <p class="hc-pricing-subtitle">{{ plans[currentPlan].subtitle }}</p>
+              <div class="hc-pricing-price">
+                <span class="hc-price-value">{{ plans[currentPlan].price }}</span>
+                <span v-if="plans[currentPlan].priceUnit" class="hc-price-unit">{{ plans[currentPlan].priceUnit }}</span>
+              </div>
+              <ul class="hc-pricing-features">
+                <li v-for="item in plans[currentPlan].included" :key="item" class="included">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {{ item }}
+                </li>
+                <li v-for="item in plans[currentPlan].excluded" :key="item" class="excluded">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  {{ item }}
+                </li>
+              </ul>
+            </div>
+            <button class="hc-pricing-arrow" @click="nextPlan" aria-label="下一個方案">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <div class="hc-pricing-dots">
+            <button
+              v-for="(plan, index) in plans"
+              :key="plan.name"
+              :class="{ active: index === currentPlan }"
+              class="hc-pricing-dot"
+              @click="currentPlan = index"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -277,10 +270,21 @@ const plans = [
         <div class="hc-cta-inner">
           <h2 class="hc-cta-title">開始你的碳盤查之旅</h2>
           <p class="hc-cta-desc">讓話燒碳盤查系統協助你的企業邁向淨零目標。</p>
-          <a :href="plans[0].ctaHref" class="btn btn-primary hc-cta-btn">免費試用</a>
+          <button class="btn btn-primary hc-cta-btn" @click="showComingSoon = true">免費試用</button>
         </div>
       </div>
     </section>
+
+    <!-- Coming Soon Modal -->
+    <Teleport to="body">
+      <div v-if="showComingSoon" class="hc-modal-overlay" @click="showComingSoon = false">
+        <div class="hc-modal" @click.stop>
+          <h3 class="hc-modal-title">即將上市</h3>
+          <p class="hc-modal-desc">敬請期待</p>
+          <button class="btn btn-primary hc-modal-btn" @click="showComingSoon = false">關閉</button>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -381,51 +385,23 @@ const plans = [
   align-items: center;
 }
 
-.hc-carousel {
-  position: relative;
+.hc-coming-soon-placeholder {
   width: 100%;
   max-width: 520px;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   background-color: var(--color-background-alt);
-}
-
-.hc-carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.hc-carousel-slide.active {
-  opacity: 1;
-}
-
-.hc-carousel-dots {
+  border: 2px dashed var(--color-border);
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
 }
 
-.hc-carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--color-border);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.hc-carousel-dot.active {
-  background-color: var(--hc-accent);
-  transform: scale(1.2);
+.hc-coming-soon-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
 }
 
 /* Section titles */
@@ -589,12 +565,22 @@ const plans = [
   background-color: var(--color-background-alt);
 }
 
+.hc-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.hc-pricing-mobile {
+  display: none;
+}
+
 .hc-pricing-carousel {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 24px;
-  max-width: 480px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -652,6 +638,13 @@ const plans = [
   align-items: center;
   position: relative;
   width: 100%;
+  transition: var(--transition);
+}
+
+.hc-pricing-grid .hc-pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  border-color: var(--hc-accent-light);
 }
 
 .hc-pricing-card.featured {
@@ -705,15 +698,14 @@ const plans = [
 .hc-pricing-features {
   list-style: none;
   padding: 0;
-  text-align: left;
+  text-align: center;
   width: 100%;
-  flex: 1;
-  margin-bottom: 24px;
 }
 
 .hc-pricing-features li {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-size: 14px;
   margin-bottom: 10px;
@@ -735,31 +727,6 @@ const plans = [
 
 .hc-pricing-features li.excluded svg {
   flex-shrink: 0;
-}
-
-.hc-pricing-btn {
-  width: 100%;
-  justify-content: center;
-  padding: 12px 24px;
-  font-size: 15px;
-  border-radius: 10px;
-}
-
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  transition: var(--transition);
-  text-decoration: none;
-}
-
-.btn-outline:hover {
-  border-color: var(--hc-accent);
-  background: var(--hc-accent-light);
 }
 
 /* CTA */
@@ -841,8 +808,56 @@ const plans = [
     gap: 16px;
   }
 
+  .hc-pricing-grid {
+    display: none;
+  }
+
+  .hc-pricing-mobile {
+    display: block;
+  }
+
   .hc-section-title {
     font-size: 26px;
   }
+}
+
+/* Modal */
+.hc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.hc-modal {
+  background: var(--color-background);
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  max-width: 360px;
+  width: 90%;
+}
+
+.hc-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.hc-modal-desc {
+  font-size: 16px;
+  color: var(--color-text-light);
+  margin-bottom: 28px;
+}
+
+.hc-modal-btn {
+  padding: 10px 28px;
+  font-size: 15px;
+  border-radius: 10px;
 }
 </style>

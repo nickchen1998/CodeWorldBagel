@@ -145,7 +145,7 @@ const destinations = [
         <div class="td-destinations-grid">
           <a v-for="dest in destinations" :key="dest.city" :href="dest.href" target="_blank" rel="noopener noreferrer" class="td-destination-card">
             <div class="td-destination-image">
-              <img :src="dest.image" :alt="dest.city" />
+              <img :src="dest.image" :alt="dest.city" loading="lazy" />
             </div>
             <div class="td-destination-label">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -156,9 +156,6 @@ const destinations = [
             </div>
           </a>
         </div>
-        <p class="td-image-note">
-          請將旅程圖片放置於 <code>public/images/</code> 目錄
-        </p>
       </div>
     </section>
 
@@ -280,7 +277,7 @@ const destinations = [
 .td-carousel {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 680px;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
   overflow: hidden;
@@ -412,7 +409,6 @@ const destinations = [
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-bottom: 24px;
 }
 
 .td-destination-card {
@@ -460,20 +456,6 @@ const destinations = [
   font-size: 14px;
   font-weight: 500;
   color: var(--td-accent-dark);
-}
-
-.td-image-note {
-  text-align: center;
-  font-size: 13px;
-  color: var(--color-text-light);
-  opacity: 0.7;
-}
-
-.td-image-note code {
-  background: var(--color-background-alt);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
 }
 
 /* CTA */
