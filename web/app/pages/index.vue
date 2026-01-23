@@ -44,12 +44,7 @@ useSeoMeta({
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
           <NuxtLink to="/hepha-carbon" class="product-card">
-            <div class="product-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 4L6 8v8c0 7 4.3 11.3 10 13 5.7-1.7 10-6 10-13V8L16 4z" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 16l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+            <img src="/images/hepha-carbon/icon.png" alt="話燒碳盤查系統" class="product-icon-img" />
             <h3 class="product-name">話燒碳盤查系統</h3>
             <p class="product-desc">智慧碳排放盤查與管理，輕鬆掌握企業碳足跡</p>
           </NuxtLink>
@@ -199,6 +194,14 @@ useSeoMeta({
   border-radius: 16px;
   color: var(--color-primary-dark);
   margin-bottom: 20px;
+}
+
+.product-icon-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  object-fit: contain;
 }
 
 .product-name {

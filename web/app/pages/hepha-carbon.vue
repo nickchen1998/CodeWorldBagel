@@ -69,6 +69,16 @@ const features = [
   }
 ]
 
+const currentPlan = ref(0)
+
+function prevPlan() {
+  currentPlan.value = (currentPlan.value - 1 + plans.length) % plans.length
+}
+
+function nextPlan() {
+  currentPlan.value = (currentPlan.value + 1) % plans.length
+}
+
 const plans = [
   {
     name: 'Free',
@@ -213,31 +223,50 @@ const plans = [
       <div class="container">
         <h2 class="hc-section-title">選擇適合您的方案</h2>
         <p class="hc-section-subtitle">無論企業規模大小，我們都有適合的方案協助您開始碳盤查</p>
-        <div class="hc-pricing-grid">
-          <div v-for="plan in plans" :key="plan.name" class="hc-pricing-card" :class="{ featured: plan.featured }">
-            <div v-if="plan.featured" class="hc-pricing-badge">{{ plan.featuredLabel }}</div>
-            <h3 class="hc-pricing-name">{{ plan.name }}</h3>
-            <p class="hc-pricing-subtitle">{{ plan.subtitle }}</p>
+        <div class="hc-pricing-carousel">
+          <button class="hc-pricing-arrow hc-pricing-arrow-left" @click="prevPlan" aria-label="上一個方案">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="hc-pricing-card" :class="{ featured: plans[currentPlan].featured }">
+            <div v-if="plans[currentPlan].featured" class="hc-pricing-badge">{{ plans[currentPlan].featuredLabel }}</div>
+            <h3 class="hc-pricing-name">{{ plans[currentPlan].name }}</h3>
+            <p class="hc-pricing-subtitle">{{ plans[currentPlan].subtitle }}</p>
             <div class="hc-pricing-price">
-              <span class="hc-price-value">{{ plan.price }}</span>
-              <span v-if="plan.priceUnit" class="hc-price-unit">{{ plan.priceUnit }}</span>
+              <span class="hc-price-value">{{ plans[currentPlan].price }}</span>
+              <span v-if="plans[currentPlan].priceUnit" class="hc-price-unit">{{ plans[currentPlan].priceUnit }}</span>
             </div>
             <ul class="hc-pricing-features">
-              <li v-for="item in plan.included" :key="item" class="included">
+              <li v-for="item in plans[currentPlan].included" :key="item" class="included">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 {{ item }}
               </li>
-              <li v-for="item in plan.excluded" :key="item" class="excluded">
+              <li v-for="item in plans[currentPlan].excluded" :key="item" class="excluded">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 {{ item }}
               </li>
             </ul>
-            <a :href="plan.ctaHref" class="btn hc-pricing-btn" :class="plan.featured ? 'btn-primary' : 'btn-outline'">{{ plan.cta }}</a>
+            <a :href="plans[currentPlan].ctaHref" class="btn hc-pricing-btn" :class="plans[currentPlan].featured ? 'btn-primary' : 'btn-outline'">{{ plans[currentPlan].cta }}</a>
           </div>
+          <button class="hc-pricing-arrow hc-pricing-arrow-right" @click="nextPlan" aria-label="下一個方案">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        <div class="hc-pricing-dots">
+          <button
+            v-for="(plan, index) in plans"
+            :key="plan.name"
+            :class="{ active: index === currentPlan }"
+            class="hc-pricing-dot"
+            @click="currentPlan = index"
+          />
         </div>
       </div>
     </section>
@@ -560,11 +589,56 @@ const plans = [
   background-color: var(--color-background-alt);
 }
 
-.hc-pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.hc-pricing-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
-  align-items: stretch;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.hc-pricing-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.hc-pricing-arrow:hover {
+  border-color: var(--hc-accent);
+  color: var(--hc-accent-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.hc-pricing-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.hc-pricing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-border);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hc-pricing-dot.active {
+  background-color: var(--hc-accent);
+  transform: scale(1.2);
 }
 
 .hc-pricing-card {
@@ -577,12 +651,7 @@ const plans = [
   flex-direction: column;
   align-items: center;
   position: relative;
-  transition: var(--transition);
-}
-
-.hc-pricing-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  width: 100%;
 }
 
 .hc-pricing-card.featured {
@@ -730,11 +799,6 @@ const plans = [
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hc-pricing-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 768px) {
