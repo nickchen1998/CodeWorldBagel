@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useHead({
+useSeoMeta({
   title: '話燒碳盤查系統 HephaCarbon - 扣握貝果',
-  meta: [
-    { name: 'description', content: '話燒碳盤查系統 HephaCarbon - 智慧碳排放盤查與管理，輕鬆掌握企業碳足跡' }
-  ]
+  description: '依據 ISO 14064 標準，智慧碳排放盤查與管理系統，一鍵產出報告、數據視覺化，輕鬆掌握企業碳足跡。',
+  ogTitle: '話燒碳盤查系統 HephaCarbon - 扣握貝果',
+  ogDescription: '依據 ISO 14064 標準，智慧碳排放盤查與管理系統，一鍵產出報告、數據視覺化，輕鬆掌握企業碳足跡。',
+  ogImage: '/images/hepha-carbon/hero.png',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
 
 const heroImages = [

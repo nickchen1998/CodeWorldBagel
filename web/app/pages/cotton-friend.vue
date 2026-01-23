@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useHead({
+useSeoMeta({
   title: '棉棉好朋友 CottonFriend - 扣握貝果',
-  meta: [
-    { name: 'description', content: '棉棉好朋友 CottonFriend - 智慧生理期管理 Line 機器人，貼心守護你的每一天' }
-  ]
+  description: '智慧生理期管理 Line 機器人，輕鬆記錄生理期、預測週期、推播提醒，貼心守護你的每一天。',
+  ogTitle: '棉棉好朋友 CottonFriend - 扣握貝果',
+  ogDescription: '智慧生理期管理 Line 機器人，輕鬆記錄生理期、預測週期、推播提醒，貼心守護你的每一天。',
+  ogImage: '/images/cotton-friend/hero.png',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
 
 const heroImages = [

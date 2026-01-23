@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useHead({
+useSeoMeta({
   title: '扣握貝果 - CodeWorldBagel',
-  meta: [
-    { name: 'description', content: '我們是肚子胖胖像貝果的工程師' }
-  ]
+  description: '我們專門協助你將想法設計、開發並落地成為系統，讓你的想法跑得比世界更快。',
+  ogTitle: '扣握貝果 - CodeWorldBagel',
+  ogDescription: '我們專門協助你將想法設計、開發並落地成為系統，讓你的想法跑得比世界更快。',
+  ogImage: '/apple-touch-icon.png',
+  ogType: 'website',
+  twitterCard: 'summary',
 })
 </script>
 

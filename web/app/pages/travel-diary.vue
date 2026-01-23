@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useHead({
+useSeoMeta({
   title: '旅行日記 TravelDiary - 扣握貝果',
-  meta: [
-    { name: 'description', content: '旅行日記 TravelDiary - 策劃記錄每一次旅行，珍藏每段旅途的美好時刻' }
-  ]
+  description: '策劃記錄每一次旅行，以圖文並茂的方式珍藏每段旅途的美好時刻，與親友分享你的旅行故事。',
+  ogTitle: '旅行日記 TravelDiary - 扣握貝果',
+  ogDescription: '策劃記錄每一次旅行，以圖文並茂的方式珍藏每段旅途的美好時刻，與親友分享你的旅行故事。',
+  ogImage: '/images/travel-diary/hero.png',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
 
 const heroImages = [
