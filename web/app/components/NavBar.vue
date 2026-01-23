@@ -14,7 +14,10 @@ interface NavItem {
 const navItems: NavItem[] = [
   {
     label: '產品列表',
-    dropdown: []
+    dropdown: [
+      { label: '旅行日記 TravelDiary', href: '/travel-diary' },
+      { label: '話燒碳盤查系統 HephaCarbon', href: '/hepha-carbon' }
+    ]
   },
   {
     label: '合作夥伴',
@@ -25,12 +28,25 @@ const navItems: NavItem[] = [
 ]
 
 const activeDropdown = ref<string | null>(null)
+const mobileMenuOpen = ref(false)
 
 function toggleDropdown(label: string) {
   activeDropdown.value = activeDropdown.value === label ? null : label
 }
 
 function closeDropdown() {
+  activeDropdown.value = null
+}
+
+function toggleMobileMenu() {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+  if (!mobileMenuOpen.value) {
+    activeDropdown.value = null
+  }
+}
+
+function closeMobileMenu() {
+  mobileMenuOpen.value = false
   activeDropdown.value = null
 }
 </script>
@@ -43,7 +59,8 @@ function closeDropdown() {
         <span class="logo-text">扣握貝果</span>
       </NuxtLink>
 
-      <nav class="navbar-nav">
+      <!-- Desktop nav -->
+      <nav class="navbar-nav desktop-nav">
         <div
           v-for="item in navItems"
           :key="item.label"
@@ -115,6 +132,53 @@ function closeDropdown() {
           <NuxtLink v-else :to="item.href!" class="nav-link">
             {{ item.label }}
           </NuxtLink>
+        </div>
+      </nav>
+
+      <!-- Mobile hamburger button -->
+      <button class="hamburger-btn" :class="{ open: mobileMenuOpen }" @click="toggleMobileMenu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Mobile menu -->
+      <nav v-show="mobileMenuOpen" class="mobile-nav">
+        <div v-for="item in navItems" :key="item.label" class="mobile-nav-group">
+          <template v-if="item.dropdown">
+            <button class="mobile-nav-label" @click="toggleDropdown(item.label)">
+              {{ item.label }}
+              <svg
+                class="dropdown-icon"
+                :class="{ rotated: activeDropdown === item.label }"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <path
+                  d="M2.5 4.5L6 8L9.5 4.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <div v-show="activeDropdown === item.label" class="mobile-dropdown">
+              <a
+                v-for="dropdownItem in item.dropdown"
+                :key="dropdownItem.label"
+                :href="dropdownItem.href"
+                :target="dropdownItem.external ? '_blank' : undefined"
+                :rel="dropdownItem.external ? 'noopener noreferrer' : undefined"
+                class="mobile-dropdown-item"
+                @click="closeMobileMenu"
+              >
+                {{ dropdownItem.label }}
+              </a>
+            </div>
+          </template>
         </div>
       </nav>
     </div>
@@ -223,6 +287,7 @@ function closeDropdown() {
   color: var(--color-text);
   border-radius: 6px;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .dropdown-item:hover {
@@ -240,5 +305,113 @@ function closeDropdown() {
   font-size: 14px;
   color: var(--color-text-light);
   font-style: italic;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hamburger-btn:hover {
+  background-color: var(--color-background-alt);
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: block;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+  }
+
+  .mobile-nav-group {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav-group:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-dropdown {
+    padding: 0 8px 12px;
+  }
+
+  .mobile-dropdown-item {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--color-text-light);
+    border-radius: 6px;
+    transition: var(--transition);
+  }
+
+  .mobile-dropdown-item:hover {
+    background-color: var(--color-background-alt);
+    color: var(--color-primary-dark);
+  }
 }
 </style>

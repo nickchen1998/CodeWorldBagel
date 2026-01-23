@@ -18,15 +18,7 @@ useHead({
           </div>
           <h1 class="hero-title">扣握貝果</h1>
           <p class="hero-subtitle">CodeWorldBagel</p>
-          <p class="hero-description">我們是肚子胖胖像貝果的工程師</p>
-          <div class="hero-actions">
-            <a href="/n8n/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              探索 N8N 平台
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M12 4L4 12M12 4H6M12 4V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
+          <p class="hero-description">我們專門協助你將想法設計、開發並落地成為系統，<br>讓你的想法跑得比世界更快。</p>
         </div>
       </div>
       <div class="hero-background"></div>
@@ -44,7 +36,7 @@ useHead({
               </svg>
             </div>
             <h3 class="feature-title">自動化流程</h3>
-            <p class="feature-description">透過 N8N 打造強大的自動化工作流程</p>
+            <p class="feature-description">打造強大的自動化工作流程</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
