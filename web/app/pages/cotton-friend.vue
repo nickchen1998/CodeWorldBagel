@@ -47,8 +47,8 @@ const features = [
   },
   {
     icon: 'heart',
-    title: '健康關懷',
-    description: '記錄身體狀況與心情，掌握自己的健康變化'
+    title: '衛生用品管理',
+    description: '記錄剩餘衛生棉數量，低庫存時貼心提醒補貨'
   }
 ]
 </script>
