@@ -1,7 +1,7 @@
 :root {
-  --color-primary: #C9A86C;
-  --color-primary-dark: #B8956A;
-  --color-primary-light: #E5D4B3;
+  --color-primary: #A68B4B;
+  --color-primary-dark: #8B7340;
+  --color-primary-light: #D4C4A0;
   --color-background: #FFFFFF;
   --color-background-alt: #FAF8F5;
   --color-text: #2D2D2D;
@@ -82,4 +82,15 @@ img {
 .btn-outline:hover {
   background-color: var(--color-primary);
   color: white;
+}
+
+/* Page Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }

@@ -94,7 +94,7 @@ useHead({
   width: 120px;
   height: 120px;
   border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(201, 168, 108, 0.3);
+  box-shadow: 0 8px 32px rgba(166, 139, 75, 0.3);
 }
 
 .hero-title {
@@ -138,7 +138,7 @@ useHead({
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 108, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(166, 139, 75, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
