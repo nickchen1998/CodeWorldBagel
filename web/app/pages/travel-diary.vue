@@ -310,7 +310,7 @@ const destinations = [
   height: 8px;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-border);
+  background-color: var(--td-accent-light);
   cursor: pointer;
   transition: var(--transition);
 }

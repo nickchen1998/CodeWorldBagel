@@ -24,41 +24,43 @@ useHead({
       <div class="hero-background"></div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Products Section -->
+    <section class="products">
       <div class="container">
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">
+        <h2 class="products-title">產品列表</h2>
+        <p class="products-subtitle">當然，我們也會自己打造產品</p>
+        <div class="products-grid">
+          <NuxtLink to="/travel-diary" class="product-card">
+            <div class="product-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M16 28V16M16 16L4 10M16 16L28 10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M6 6h20a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 12h12M10 16h12M10 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="feature-title">自動化流程</h3>
-            <p class="feature-description">打造強大的自動化工作流程</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
+            <h3 class="product-name">旅行日記</h3>
+            <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
+          </NuxtLink>
+          <NuxtLink to="/hepha-carbon" class="product-card">
+            <div class="product-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/>
-                <path d="M16 10V16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 4L6 8v8c0 7 4.3 11.3 10 13 5.7-1.7 10-6 10-13V8L16 4z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 16l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3 class="feature-title">節省時間</h3>
-            <p class="feature-description">讓重複性工作自動執行，專注於更重要的事</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">
+            <h3 class="product-name">話燒碳盤查系統</h3>
+            <p class="product-desc">智慧碳排放盤查與管理，輕鬆掌握企業碳足跡</p>
+          </NuxtLink>
+          <NuxtLink to="/cotton-friend" class="product-card">
+            <div class="product-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M6 16C6 10.477 10.477 6 16 6C21.523 6 26 10.477 26 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M26 16C26 21.523 21.523 26 16 26C10.477 26 6 21.523 6 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="16" cy="13" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 22c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 10v6M13 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="feature-title">無限整合</h3>
-            <p class="feature-description">連接數百種應用程式與服務</p>
-          </div>
+            <h3 class="product-name">棉棉好朋友</h3>
+            <p class="product-desc">智慧生理期管理 Line 機器人，貼心守護你的每一天</p>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -142,19 +144,34 @@ useHead({
   pointer-events: none;
 }
 
-/* Features Section */
-.features {
+/* Products Section */
+.products {
   padding: 80px 0;
   background-color: var(--color-background-alt);
 }
 
-.features-grid {
+.products-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.products-subtitle {
+  font-size: 16px;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
-.feature-card {
+.product-card {
   background-color: var(--color-background);
   padding: 32px;
   border-radius: 16px;
@@ -163,12 +180,13 @@ useHead({
   transition: var(--transition);
 }
 
-.feature-card:hover {
+.product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-primary-light);
 }
 
-.feature-icon {
+.product-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -180,14 +198,14 @@ useHead({
   margin-bottom: 20px;
 }
 
-.feature-title {
+.product-name {
   font-size: 20px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 12px;
 }
 
-.feature-description {
+.product-desc {
   font-size: 15px;
   color: var(--color-text-light);
   line-height: 1.6;
@@ -207,7 +225,7 @@ useHead({
     font-size: 16px;
   }
 
-  .features-grid {
+  .products-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }

@@ -16,7 +16,8 @@ const navItems: NavItem[] = [
     label: '產品列表',
     dropdown: [
       { label: '旅行日記 TravelDiary', href: '/travel-diary' },
-      { label: '話燒碳盤查系統 HephaCarbon', href: '/hepha-carbon' }
+      { label: '話燒碳盤查系統 HephaCarbon', href: '/hepha-carbon' },
+      { label: '棉棉好朋友 CottonFriend', href: '/cotton-friend' }
     ]
   },
   {
@@ -56,7 +57,7 @@ function closeMobileMenu() {
     <div class="navbar-container">
       <NuxtLink to="/" class="navbar-logo" @click="closeDropdown">
         <img src="/apple-touch-icon.png" alt="扣握貝果" class="logo-image" />
-        <span class="logo-text">扣握貝果</span>
+        <span class="logo-text">扣握貝果 CodeWorldBagel</span>
       </NuxtLink>
 
       <!-- Desktop nav -->
@@ -98,33 +99,41 @@ function closeMobileMenu() {
               @mouseenter="activeDropdown = item.label"
             >
               <template v-if="item.dropdown.length > 0">
-                <a
-                  v-for="dropdownItem in item.dropdown"
-                  :key="dropdownItem.label"
-                  :href="dropdownItem.href"
-                  :target="dropdownItem.external ? '_blank' : undefined"
-                  :rel="dropdownItem.external ? 'noopener noreferrer' : undefined"
-                  class="dropdown-item"
-                  @click="closeDropdown"
-                >
-                  {{ dropdownItem.label }}
-                  <svg
+                <template v-for="dropdownItem in item.dropdown" :key="dropdownItem.label">
+                  <a
                     v-if="dropdownItem.external"
-                    class="external-icon"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
+                    :href="dropdownItem.href"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="dropdown-item"
+                    @click="closeDropdown"
                   >
-                    <path
-                      d="M9 3L3 9M9 3H5M9 3V7"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
+                    {{ dropdownItem.label }}
+                    <svg
+                      class="external-icon"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <path
+                        d="M9 3L3 9M9 3H5M9 3V7"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <NuxtLink
+                    v-else
+                    :to="dropdownItem.href"
+                    class="dropdown-item"
+                    @click="closeDropdown"
+                  >
+                    {{ dropdownItem.label }}
+                  </NuxtLink>
+                </template>
               </template>
               <span v-else class="dropdown-empty">即將推出</span>
             </div>
