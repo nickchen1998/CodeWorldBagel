@@ -51,51 +51,15 @@ const features = [
 
 const showComingSoon = ref(false)
 
-const plans = [
-  {
-    name: 'Free',
-    subtitle: '適合剛開始碳盤查的企業',
-    price: '$0',
-    priceUnit: '/月',
-    featured: true,
-    featuredLabel: '推薦方案',
-    included: ['完整碳排放儀表板', '每種分類 10 筆設備資料上限', '單人組織', '報表匯出功能（固定格式）'],
-    excluded: ['批次匯入設備', '專人客服'],
-    cta: '免費試用',
-    ctaHref: 'https://hepha-carbon.codeworldbagel.com/register/'
-  },
-  {
-    name: 'Plus',
-    subtitle: '適合中小型企業使用',
-    price: 'Coming Soon',
-    priceUnit: '',
-    featured: false,
-    included: ['完整碳排放儀表板', '每種分類 100 筆設備資料上限', '多人組織（上限 10 人）', '報表匯出功能（固定格式）'],
-    excluded: ['批次匯入設備（需透過客服）', '專人客服'],
-    cta: '聯絡我們',
-    ctaHref: 'mailto:hephacarbon@gmail.com?subject=Plus 方案諮詢'
-  },
-  {
-    name: 'Pro',
-    subtitle: '適合大型企業或進階需求',
-    price: 'Coming Soon',
-    priceUnit: '',
-    featured: false,
-    included: ['完整碳排放儀表板', '設備無上限', '組織人數無上限', '報表匯出功能（固定格式）', '批次匯入設備（需透過客服）', '專人客服'],
-    excluded: [],
-    cta: '聯絡我們',
-    ctaHref: 'mailto:hephacarbon@gmail.com?subject=Pro 方案諮詢'
-  }
-]
-
-const currentPlan = ref(0)
-
-function prevPlan() {
-  currentPlan.value = (currentPlan.value - 1 + plans.length) % plans.length
-}
-
-function nextPlan() {
-  currentPlan.value = (currentPlan.value + 1) % plans.length
+const plan = {
+  name: 'Free',
+  subtitle: '適合剛開始碳盤查的企業',
+  price: '$0',
+  priceUnit: '/月',
+  included: ['完整的碳排放儀表板', '10 筆冷媒逸散設備', '10 筆汽柴油燃燒設備', '2 種化糞池逸散員工分類', '電費帳單上傳', '單人組織', '匯出固定格式報表'],
+  excluded: ['批次匯入設備', '專人客服', '報表內容編輯'],
+  cta: '免費試用',
+  ctaHref: 'https://hepha-carbon.codeworldbagel.com/register/'
 }
 </script>
 
@@ -184,18 +148,16 @@ function nextPlan() {
     <!-- Pricing -->
     <section class="hc-pricing">
       <div class="container">
-        <h2 class="hc-section-title">選擇適合您的方案</h2>
-        <p class="hc-section-subtitle">無論企業規模大小，我們都有適合的方案協助您開始碳盤查</p>
+        <h2 class="hc-section-title">方案內容</h2>
+        <p class="hc-section-subtitle">立即免費開始您的碳盤查之旅</p>
 
-        <!-- Desktop: grid -->
-        <div class="hc-pricing-grid">
-          <div v-for="plan in plans" :key="plan.name" class="hc-pricing-card" :class="{ featured: plan.featured }">
-            <div v-if="plan.featured" class="hc-pricing-badge">{{ plan.featuredLabel }}</div>
+        <div class="hc-pricing-single">
+          <div class="hc-pricing-card">
             <h3 class="hc-pricing-name">{{ plan.name }}</h3>
             <p class="hc-pricing-subtitle">{{ plan.subtitle }}</p>
             <div class="hc-pricing-price">
               <span class="hc-price-value">{{ plan.price }}</span>
-              <span v-if="plan.priceUnit" class="hc-price-unit">{{ plan.priceUnit }}</span>
+              <span class="hc-price-unit">{{ plan.priceUnit }}</span>
             </div>
             <ul class="hc-pricing-features">
               <li v-for="item in plan.included" :key="item" class="included">
@@ -211,54 +173,6 @@ function nextPlan() {
                 {{ item }}
               </li>
             </ul>
-          </div>
-        </div>
-
-        <!-- Mobile: carousel -->
-        <div class="hc-pricing-mobile">
-          <div class="hc-pricing-carousel">
-            <button class="hc-pricing-arrow" @click="prevPlan" aria-label="上一個方案">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <div class="hc-pricing-card" :class="{ featured: plans[currentPlan].featured }">
-              <div v-if="plans[currentPlan].featured" class="hc-pricing-badge">{{ plans[currentPlan].featuredLabel }}</div>
-              <h3 class="hc-pricing-name">{{ plans[currentPlan].name }}</h3>
-              <p class="hc-pricing-subtitle">{{ plans[currentPlan].subtitle }}</p>
-              <div class="hc-pricing-price">
-                <span class="hc-price-value">{{ plans[currentPlan].price }}</span>
-                <span v-if="plans[currentPlan].priceUnit" class="hc-price-unit">{{ plans[currentPlan].priceUnit }}</span>
-              </div>
-              <ul class="hc-pricing-features">
-                <li v-for="item in plans[currentPlan].included" :key="item" class="included">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {{ item }}
-                </li>
-                <li v-for="item in plans[currentPlan].excluded" :key="item" class="excluded">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  {{ item }}
-                </li>
-              </ul>
-            </div>
-            <button class="hc-pricing-arrow" @click="nextPlan" aria-label="下一個方案">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-          <div class="hc-pricing-dots">
-            <button
-              v-for="(plan, index) in plans"
-              :key="plan.name"
-              :class="{ active: index === currentPlan }"
-              class="hc-pricing-dot"
-              @click="currentPlan = index"
-            />
           </div>
         </div>
       </div>
@@ -567,105 +481,28 @@ function nextPlan() {
   background-color: var(--color-background-alt);
 }
 
-.hc-pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.hc-pricing-mobile {
-  display: none;
-}
-
-.hc-pricing-carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.hc-pricing-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
-  background: var(--color-background);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-
-.hc-pricing-arrow:hover {
-  border-color: var(--hc-accent);
-  color: var(--hc-accent-dark);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.hc-pricing-dots {
+.hc-pricing-single {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.hc-pricing-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--color-border);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.hc-pricing-dot.active {
-  background-color: var(--hc-accent);
-  transform: scale(1.2);
 }
 
 .hc-pricing-card {
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: 16px;
-  padding: 32px 28px;
+  padding: 36px 32px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   width: 100%;
   transition: var(--transition);
 }
 
-.hc-pricing-grid .hc-pricing-card:hover {
+.hc-pricing-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
   border-color: var(--hc-accent-light);
-}
-
-.hc-pricing-card.featured {
-  border: 2px solid var(--hc-accent);
-  box-shadow: 0 8px 24px rgba(166, 139, 75, 0.12);
-}
-
-.hc-pricing-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--hc-accent-dark);
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 14px;
-  border-radius: 20px;
-  white-space: nowrap;
 }
 
 .hc-pricing-name {
@@ -808,14 +645,6 @@ function nextPlan() {
   .hc-features-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-
-  .hc-pricing-grid {
-    display: none;
-  }
-
-  .hc-pricing-mobile {
-    display: block;
   }
 
   .hc-section-title {

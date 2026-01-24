@@ -32,24 +32,24 @@ onUnmounted(() => {
 
 const features = [
   {
-    icon: 'journal',
-    title: '記錄旅程',
-    description: '以圖文並茂的方式，記錄旅途中的每個精彩瞬間'
-  },
-  {
     icon: 'search',
     title: '搜尋探索',
     description: '依國家、城市、日期快速篩選，輕鬆回顧過往旅程'
   },
   {
-    icon: 'share',
-    title: '分享回憶',
-    description: '與親友分享你的旅行故事，讓美好回憶流傳'
-  },
-  {
     icon: 'plan',
     title: '規劃行程',
     description: '建立未來旅行計畫，從靈感到出發一氣呵成'
+  },
+  {
+    icon: 'journal',
+    title: '紀錄旅程',
+    description: '以圖文並茂的方式，記錄旅途中的每個精彩瞬間'
+  },
+  {
+    icon: 'share',
+    title: '分享回憶',
+    description: '與親友分享你的旅行故事，讓美好回憶流傳'
   }
 ]
 
