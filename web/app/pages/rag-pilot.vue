@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
   title: '數據領航員 RAGPilot - 扣握貝果',
-  description: '協助你在公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
+  description: '協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
   ogTitle: '數據領航員 RAGPilot - 扣握貝果',
-  ogDescription: '協助你在公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
+  ogDescription: '協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
   ogImage: '/images/rag-pilot/icon.png',
   ogType: 'website',
   twitterCard: 'summary',
@@ -15,7 +15,7 @@ const features = [
   {
     icon: 'search',
     title: '智慧搜尋',
-    description: '從大量公開資料中精準定位你需要的內容，省去大海撈針的時間'
+    description: '從大量政府公開資料中精準定位你需要的內容，省去大海撈針的時間'
   },
   {
     icon: 'brain',
@@ -45,7 +45,7 @@ const features = [
           <div class="rp-hero-badge">AI Research</div>
           <h1 class="rp-hero-title">數據領航員</h1>
           <p class="rp-hero-subtitle">RAGPilot</p>
-          <p class="rp-hero-tagline">協助你在公開資料當中快速找尋想要的內容，<br>並進行深度研究。</p>
+          <p class="rp-hero-tagline">協助你在大量政府公開資料當中快速找尋想要的內容，<br>並進行深度研究。</p>
           <button class="btn btn-primary rp-hero-btn rp-hero-btn-desktop" @click="showComingSoon = true">免費試用</button>
         </div>
         <div class="rp-hero-visual">
@@ -61,7 +61,7 @@ const features = [
     <section class="rp-features">
       <div class="container">
         <h2 class="rp-section-title">核心功能</h2>
-        <p class="rp-section-subtitle">讓公開資料成為你的研究利器</p>
+        <p class="rp-section-subtitle">讓政府公開資料成為你的研究利器</p>
         <div class="rp-features-grid">
           <div v-for="feature in features" :key="feature.title" class="rp-feature-card">
             <div class="rp-feature-icon">

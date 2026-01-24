@@ -62,7 +62,7 @@ useSeoMeta({
           <NuxtLink to="/rag-pilot" class="product-card">
             <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" class="product-icon-img" />
             <h3 class="product-name">數據領航員 RAGPilot</h3>
-            <p class="product-desc">協助你在公開資料當中快速找尋想要的內容並進行深度研究</p>
+            <p class="product-desc">協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究</p>
           </NuxtLink>
         </div>
       </div>
