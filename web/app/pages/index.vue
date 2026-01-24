@@ -59,6 +59,11 @@ useSeoMeta({
             <h3 class="product-name">棉棉好朋友</h3>
             <p class="product-desc">智慧生理期管理 Line 機器人，貼心守護你的每一天</p>
           </NuxtLink>
+          <NuxtLink to="/rag-pilot" class="product-card">
+            <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" class="product-icon-img" />
+            <h3 class="product-name">數據領航員 RAGPilot</h3>
+            <p class="product-desc">協助你在公開資料當中快速找尋想要的內容並進行深度研究</p>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -165,7 +170,7 @@ useSeoMeta({
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 

@@ -17,11 +17,16 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: '旅行日記 TravelDiary', href: '/travel-diary' },
       { label: '話燒碳盤查系統 HephaCarbon', href: '/hepha-carbon' },
-      { label: '棉棉好朋友 CottonFriend', href: '/cotton-friend' }
+      { label: '棉棉好朋友 CottonFriend', href: '/cotton-friend' },
+      { label: '數據領航員 RAGPilot', href: '/rag-pilot' }
     ]
   },
   {
     label: '合作夥伴',
+    dropdown: []
+  },
+  {
+    label: '工作平台',
     dropdown: [
       { label: '扣握貝果 N8N 平台', href: '/n8n/', external: true }
     ]
@@ -30,13 +35,32 @@ const navItems: NavItem[] = [
 
 const activeDropdown = ref<string | null>(null)
 const mobileMenuOpen = ref(false)
+let closeTimer: ReturnType<typeof setTimeout> | null = null
+
+function openDropdown(label: string) {
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
+  activeDropdown.value = label
+}
 
 function toggleDropdown(label: string) {
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+    closeTimer = null
+  }
   activeDropdown.value = activeDropdown.value === label ? null : label
 }
 
 function closeDropdown() {
-  activeDropdown.value = null
+  if (closeTimer) {
+    clearTimeout(closeTimer)
+  }
+  closeTimer = setTimeout(() => {
+    activeDropdown.value = null
+    closeTimer = null
+  }, 150)
 }
 
 function toggleMobileMenu() {
@@ -72,7 +96,7 @@ function closeMobileMenu() {
             <button
               class="nav-link dropdown-toggle"
               :class="{ active: activeDropdown === item.label }"
-              @mouseenter="toggleDropdown(item.label)"
+              @mouseenter="openDropdown(item.label)"
               @click="toggleDropdown(item.label)"
             >
               {{ item.label }}
@@ -96,7 +120,7 @@ function closeMobileMenu() {
             <div
               v-show="activeDropdown === item.label"
               class="dropdown-menu"
-              @mouseenter="activeDropdown = item.label"
+              @mouseenter="openDropdown(item.label)"
             >
               <template v-if="item.dropdown.length > 0">
                 <template v-for="dropdownItem in item.dropdown" :key="dropdownItem.label">
@@ -135,7 +159,7 @@ function closeMobileMenu() {
                   </NuxtLink>
                 </template>
               </template>
-              <span v-else class="dropdown-empty">即將推出</span>
+              <span v-else class="dropdown-empty">歡迎加入</span>
             </div>
           </template>
           <NuxtLink v-else :to="item.href!" class="nav-link">
@@ -175,17 +199,20 @@ function closeMobileMenu() {
               </svg>
             </button>
             <div v-show="activeDropdown === item.label" class="mobile-dropdown">
-              <a
-                v-for="dropdownItem in item.dropdown"
-                :key="dropdownItem.label"
-                :href="dropdownItem.href"
-                :target="dropdownItem.external ? '_blank' : undefined"
-                :rel="dropdownItem.external ? 'noopener noreferrer' : undefined"
-                class="mobile-dropdown-item"
-                @click="closeMobileMenu"
-              >
-                {{ dropdownItem.label }}
-              </a>
+              <template v-if="item.dropdown.length > 0">
+                <a
+                  v-for="dropdownItem in item.dropdown"
+                  :key="dropdownItem.label"
+                  :href="dropdownItem.href"
+                  :target="dropdownItem.external ? '_blank' : undefined"
+                  :rel="dropdownItem.external ? 'noopener noreferrer' : undefined"
+                  class="mobile-dropdown-item"
+                  @click="closeMobileMenu"
+                >
+                  {{ dropdownItem.label }}
+                </a>
+              </template>
+              <span v-else class="mobile-dropdown-empty">歡迎加入</span>
             </div>
           </template>
         </div>
@@ -421,6 +448,14 @@ function closeMobileMenu() {
   .mobile-dropdown-item:hover {
     background-color: var(--color-background-alt);
     color: var(--color-primary-dark);
+  }
+
+  .mobile-dropdown-empty {
+    display: block;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--color-text-light);
+    font-style: italic;
   }
 }
 </style>

@@ -9,25 +9,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const heroImages = [
-  '/images/cotton-friend/hero.png'
-  // 新增更多圖片: '/images/cotton-friend/hero-2.png'
-]
-
-const currentSlide = ref(0)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  if (heroImages.length > 1) {
-    intervalId = setInterval(() => {
-      currentSlide.value = (currentSlide.value + 1) % heroImages.length
-    }, 4000)
-  }
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
+const showComingSoon = ref(false)
 
 const features = [
   {
@@ -64,29 +46,13 @@ const features = [
           <h1 class="cf-hero-title">棉棉好朋友</h1>
           <p class="cf-hero-subtitle">CottonFriend</p>
           <p class="cf-hero-tagline">智慧生理期管理 Line 機器人，<br>貼心守護你的每一天。</p>
-          <a href="#" class="btn btn-primary cf-hero-btn cf-hero-btn-desktop">加入好友</a>
+          <button class="btn btn-primary cf-hero-btn cf-hero-btn-desktop" @click="showComingSoon = true">加入好友</button>
         </div>
         <div class="cf-hero-screenshot">
-          <div class="cf-carousel">
-            <img
-              v-for="(src, index) in heroImages"
-              :key="src"
-              :src="src"
-              :class="{ active: index === currentSlide }"
-              alt="棉棉好朋友產品截圖"
-              class="cf-carousel-slide"
-            />
+          <div class="cf-coming-soon-placeholder">
+            <span class="cf-coming-soon-text">Coming Soon ~</span>
           </div>
-          <div v-if="heroImages.length > 1" class="cf-carousel-dots">
-            <button
-              v-for="(_, index) in heroImages"
-              :key="index"
-              :class="{ active: index === currentSlide }"
-              class="cf-carousel-dot"
-              @click="currentSlide = index"
-            />
-          </div>
-          <a href="#" class="btn btn-primary cf-hero-btn cf-hero-btn-mobile">加入好友</a>
+          <button class="btn btn-primary cf-hero-btn cf-hero-btn-mobile" @click="showComingSoon = true">加入好友</button>
         </div>
       </div>
     </section>
@@ -129,10 +95,21 @@ const features = [
         <div class="cf-cta-inner">
           <h2 class="cf-cta-title">立即加入棉棉好朋友</h2>
           <p class="cf-cta-desc">只要加入 Line 好友，就能開始記錄你的生理週期。</p>
-          <a href="#" class="btn btn-primary cf-cta-btn">加入 Line 好友</a>
+          <button class="btn btn-primary cf-cta-btn" @click="showComingSoon = true">加入 Line 好友</button>
         </div>
       </div>
     </section>
+
+    <!-- Coming Soon Modal -->
+    <Teleport to="body">
+      <div v-if="showComingSoon" class="cf-modal-overlay" @click="showComingSoon = false">
+        <div class="cf-modal" @click.stop>
+          <h3 class="cf-modal-title">即將上架</h3>
+          <p class="cf-modal-desc">敬請期待</p>
+          <button class="btn btn-primary cf-modal-btn" @click="showComingSoon = false">好的</button>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -220,51 +197,23 @@ const features = [
   align-items: center;
 }
 
-.cf-carousel {
-  position: relative;
+.cf-coming-soon-placeholder {
   width: 100%;
   max-width: 520px;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   background-color: var(--color-background-alt);
-}
-
-.cf-carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.cf-carousel-slide.active {
-  opacity: 1;
-}
-
-.cf-carousel-dots {
+  border: 1px solid var(--color-border);
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
 }
 
-.cf-carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--cf-accent-light);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.cf-carousel-dot.active {
-  background-color: var(--cf-accent);
-  transform: scale(1.2);
+.cf-coming-soon-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
 }
 
 /* Section titles */
@@ -409,5 +358,45 @@ const features = [
   .cf-section-title {
     font-size: 26px;
   }
+}
+
+/* Modal */
+.cf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.cf-modal {
+  background: var(--color-background);
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  max-width: 360px;
+  width: 90%;
+}
+
+.cf-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.cf-modal-desc {
+  font-size: 16px;
+  color: var(--color-text-light);
+  margin-bottom: 28px;
+}
+
+.cf-modal-btn {
+  padding: 10px 28px;
+  font-size: 15px;
+  border-radius: 10px;
 }
 </style>
