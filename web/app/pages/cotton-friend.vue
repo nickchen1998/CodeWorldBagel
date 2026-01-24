@@ -100,6 +100,8 @@ const features = [
       </div>
     </section>
 
+    <ContactSection default-product="cotton-friend" />
+
     <!-- Coming Soon Modal -->
     <Teleport to="body">
       <div v-if="showComingSoon" class="cf-modal-overlay" @click="showComingSoon = false">

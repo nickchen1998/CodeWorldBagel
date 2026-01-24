@@ -275,6 +275,8 @@ function nextPlan() {
       </div>
     </section>
 
+    <ContactSection default-product="hepha-carbon" />
+
     <!-- Coming Soon Modal -->
     <Teleport to="body">
       <div v-if="showComingSoon" class="hc-modal-overlay" @click="showComingSoon = false">

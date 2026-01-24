@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
+  runtimeConfig: {
+    gmailUser: process.env.GMAIL_USER || '',
+    gmailAppPassword: process.env.GMAIL_APP_PASSWORD || ''
+  },
   modules: ['@nuxtjs/sitemap'],
   site: {
     url: 'https://codeworldbagel.com',

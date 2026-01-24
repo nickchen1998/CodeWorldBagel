@@ -30,6 +30,10 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: '扣握貝果 N8N 平台', href: '/n8n/', external: true }
     ]
+  },
+  {
+    label: '聯絡我們',
+    href: '/#contact'
   }
 ]
 
@@ -73,6 +77,17 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
   mobileMenuOpen.value = false
   activeDropdown.value = null
+}
+
+function scrollToContact() {
+  closeDropdown()
+  closeMobileMenu()
+  const el = document.getElementById('contact')
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    navigateTo('/#contact')
+  }
 }
 </script>
 
@@ -159,9 +174,12 @@ function closeMobileMenu() {
                   </NuxtLink>
                 </template>
               </template>
-              <span v-else class="dropdown-empty">歡迎加入</span>
+              <a v-else class="dropdown-item dropdown-contact" href="/#contact" @click.prevent="scrollToContact">歡迎加入</a>
             </div>
           </template>
+          <a v-else-if="item.href?.includes('#')" :href="item.href" class="nav-link" @click.prevent="scrollToContact">
+            {{ item.label }}
+          </a>
           <NuxtLink v-else :to="item.href!" class="nav-link">
             {{ item.label }}
           </NuxtLink>
@@ -212,8 +230,16 @@ function closeMobileMenu() {
                   {{ dropdownItem.label }}
                 </a>
               </template>
-              <span v-else class="mobile-dropdown-empty">歡迎加入</span>
+              <a v-else class="mobile-dropdown-item" href="/#contact" @click.prevent="scrollToContact">歡迎加入</a>
             </div>
+          </template>
+          <template v-else>
+            <a v-if="item.href?.includes('#')" :href="item.href" class="mobile-nav-label" @click.prevent="scrollToContact">
+              {{ item.label }}
+            </a>
+            <NuxtLink v-else :to="item.href!" class="mobile-nav-label" @click="closeMobileMenu">
+              {{ item.label }}
+            </NuxtLink>
           </template>
         </div>
       </nav>
@@ -450,12 +476,5 @@ function closeMobileMenu() {
     color: var(--color-primary-dark);
   }
 
-  .mobile-dropdown-empty {
-    display: block;
-    padding: 10px 12px;
-    font-size: 14px;
-    color: var(--color-text-light);
-    font-style: italic;
-  }
 }
 </style>

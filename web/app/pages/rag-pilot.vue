@@ -102,6 +102,8 @@ const features = [
       </div>
     </section>
 
+    <ContactSection default-product="rag-pilot" />
+
     <!-- Coming Soon Modal -->
     <Teleport to="body">
       <div v-if="showComingSoon" class="rp-modal-overlay" @click="showComingSoon = false">

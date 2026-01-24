@@ -169,6 +169,8 @@ const destinations = [
         </div>
       </div>
     </section>
+
+    <ContactSection default-product="travel-diary" />
   </div>
 </template>
 
