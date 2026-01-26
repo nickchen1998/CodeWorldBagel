@@ -34,12 +34,7 @@ useSeoMeta({
         <p class="products-subtitle">當然，我們也會自己打造產品</p>
         <div class="products-grid">
           <NuxtLink to="/travel-diary" class="product-card">
-            <div class="product-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M6 6h20a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2z" stroke="currentColor" stroke-width="2"/>
-                <path d="M10 12h12M10 16h12M10 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
+            <img src="/images/travel-diary/icon.png" alt="旅行日記 TravelDiary" class="product-icon-img" />
             <h3 class="product-name">旅行日記</h3>
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
