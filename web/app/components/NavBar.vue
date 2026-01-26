@@ -26,12 +26,6 @@ const navItems: NavItem[] = [
     dropdown: []
   },
   {
-    label: '工作平台',
-    dropdown: [
-      { label: '扣握貝果 N8N 平台', href: '/n8n/', external: true }
-    ]
-  },
-  {
     label: '聯絡我們',
     href: '/#contact'
   }
