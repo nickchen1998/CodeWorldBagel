@@ -33,9 +33,9 @@ const features = [
     description: '無須複雜開發設定，註冊帳號後即可開始使用，最快 10 分鐘完成首次數據輸入。'
   },
   {
-    icon: 'report',
-    title: '自動產出報表',
-    description: '一鍵產出符合 ISO 14064-1 格式的碳盤查報告，包含完整圖表與數據分析。'
+    icon: 'cloud',
+    title: '雲端隨時存取',
+    description: '24/7 雲端服務，隨時隨地透過瀏覽器存取您的碳盤查資料與報表。'
   },
   {
     icon: 'brain',
@@ -43,9 +43,9 @@ const features = [
     description: '內建最新排放係數與 GWP 值，自動換算各類溫室氣體為 CO2e 當量。'
   },
   {
-    icon: 'cloud',
-    title: '雲端隨時存取',
-    description: '24/7 雲端服務，隨時隨地透過瀏覽器存取您的碳盤查資料與報表。'
+    icon: 'report',
+    title: '自動產出報表',
+    description: '一鍵產出碳盤查報告，包含完整圖表與數據分析。'
   }
 ]
 
