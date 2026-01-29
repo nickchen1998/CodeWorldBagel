@@ -70,10 +70,6 @@ async function handleSubmit() {
               <span class="checkbox-label">旅行日記 TravelDiary</span>
             </label>
             <label class="form-checkbox">
-              <input v-model="selectedProducts" type="checkbox" value="hepha-carbon" />
-              <span class="checkbox-label">話燒碳盤查系統 HephaCarbon</span>
-            </label>
-            <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="cotton-friend" />
               <span class="checkbox-label">棉棉好朋友 CottonFriend</span>
             </label>

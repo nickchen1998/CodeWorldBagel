@@ -37,7 +37,6 @@ export default defineEventHandler(async (event) => {
 
   const productLabels: Record<string, string> = {
     'travel-diary': '旅行日記 TravelDiary',
-    'hepha-carbon': '話燒碳盤查系統 HephaCarbon',
     'cotton-friend': '棉棉好朋友 CottonFriend',
     'rag-pilot': '數據領航員 RAGPilot',
     'custom': '客製化開發諮詢'

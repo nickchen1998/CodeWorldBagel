@@ -38,11 +38,6 @@ useSeoMeta({
             <h3 class="product-name">旅行日記</h3>
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
-          <NuxtLink to="/hepha-carbon" class="product-card">
-            <img src="/images/hepha-carbon/icon.png" alt="話燒碳盤查系統" class="product-icon-img" />
-            <h3 class="product-name">話燒碳盤查系統</h3>
-            <p class="product-desc">智慧碳排放盤查與管理，輕鬆掌握企業碳足跡</p>
-          </NuxtLink>
           <NuxtLink to="/cotton-friend" class="product-card">
             <div class="product-icon">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
