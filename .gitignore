@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# n8n 運行資料
+n8n_data/
+
 # macOS 系統檔案
 .DS_Store
 .AppleDouble
