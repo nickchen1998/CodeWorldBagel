@@ -1,4 +1,3 @@
 User-Agent: *
-Disallow: /n8n/
 
 Sitemap: https://codeworldbagel.com/sitemap.xml
