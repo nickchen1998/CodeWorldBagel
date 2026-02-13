@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const FORMSPREE_URL = 'https://formspree.io/f/mbdagzoq'
+
 const props = defineProps<{
   defaultProduct?: string
 }>()
@@ -12,6 +14,13 @@ const sending = ref(false)
 const sent = ref(false)
 const error = ref('')
 
+const productLabels: Record<string, string> = {
+  'travel-diary': '旅行日記 TravelDiary',
+  'cotton-friend': '棉棉好朋友 CottonFriend',
+  'rag-pilot': '數據領航員 RAGPilot',
+  'custom': '客製化開發諮詢'
+}
+
 async function handleSubmit() {
   if (!name.value || !email.value || !subject.value || !message.value) {
     error.value = '請填寫所有必填欄位'
@@ -22,16 +31,26 @@ async function handleSubmit() {
   error.value = ''
 
   try {
-    await $fetch('/api/contact', {
+    const products = selectedProducts.value
+      .map(p => productLabels[p] || p)
+      .join('、') || '未選擇'
+
+    const response = await fetch(FORMSPREE_URL, {
       method: 'POST',
-      body: {
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
         name: name.value,
         email: email.value,
         subject: subject.value,
         message: message.value,
-        products: selectedProducts.value
-      }
+        products
+      })
     })
+
+    if (!response.ok) {
+      throw new Error('發送失敗')
+    }
+
     sent.value = true
     name.value = ''
     email.value = ''
@@ -39,7 +58,7 @@ async function handleSubmit() {
     message.value = ''
     selectedProducts.value = props.defaultProduct ? [props.defaultProduct] : []
   } catch (e: any) {
-    error.value = e?.data?.statusMessage || '發送失敗，請稍後再試'
+    error.value = '發送失敗，請稍後再試'
   } finally {
     sending.value = false
   }
