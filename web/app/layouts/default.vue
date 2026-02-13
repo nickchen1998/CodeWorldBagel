@@ -13,6 +13,8 @@
           </div>
           <p class="footer-copyright">
             &copy; {{ new Date().getFullYear() }} 扣握貝果. All rights reserved.
+            <span class="footer-divider">|</span>
+            <a href="mailto:codeworldbagel@gmail.com" class="footer-email">codeworldbagel@gmail.com</a>
           </p>
         </div>
       </div>
@@ -68,5 +70,20 @@
 .footer-copyright {
   font-size: 14px;
   color: var(--color-text-light);
+}
+
+.footer-divider {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+.footer-email {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-email:hover {
+  color: var(--color-primary);
 }
 </style>
