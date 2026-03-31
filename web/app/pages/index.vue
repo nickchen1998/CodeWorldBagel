@@ -33,6 +33,11 @@ useSeoMeta({
         <h2 class="products-title">產品列表</h2>
         <p class="products-subtitle">當然，我們也會自己打造產品</p>
         <div class="products-grid">
+          <NuxtLink to="/travel-budget" class="product-card">
+            <img src="/images/travel-budget/icon.png" alt="熊好算 TravelBudget" class="product-icon-img" />
+            <h3 class="product-name">熊好算</h3>
+            <p class="product-desc">海外旅遊輕量化記帳，外幣換算、預算控管、多人協作一手掌握</p>
+          </NuxtLink>
           <NuxtLink to="/travel-diary" class="product-card">
             <img src="/images/travel-diary/icon.png" alt="旅行日記 TravelDiary" class="product-icon-img" />
             <h3 class="product-name">旅行日記</h3>

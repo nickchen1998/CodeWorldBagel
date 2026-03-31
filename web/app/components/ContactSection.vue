@@ -15,6 +15,7 @@ const sent = ref(false)
 const error = ref('')
 
 const productLabels: Record<string, string> = {
+  'travel-budget': '熊好算 TravelBudget',
   'travel-diary': '旅行日記 TravelDiary',
   'cotton-friend': '棉棉好朋友 CottonFriend',
   'rag-pilot': '數據領航員 RAGPilot',
@@ -84,6 +85,10 @@ async function handleSubmit() {
         <div class="form-group">
           <label class="form-label">感興趣的項目</label>
           <div class="form-checkbox-group">
+            <label class="form-checkbox">
+              <input v-model="selectedProducts" type="checkbox" value="travel-budget" />
+              <span class="checkbox-label">熊好算 TravelBudget</span>
+            </label>
             <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="travel-diary" />
               <span class="checkbox-label">旅行日記 TravelDiary</span>
