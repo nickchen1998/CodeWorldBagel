@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: '隱私權政策 — 熊好算 TravelBudget',
-  description: '熊好算 TravelBudget 隱私權政策，說明資料蒐集、雲端儲存、廣告及資料刪除方式。',
+  title: 'Privacy Policy — 熊好算 TravelBudget',
+  description: 'Privacy Policy for 熊好算 TravelBudget. Learn about data collection, cloud storage, advertising, and data deletion.',
 })
 </script>
 
@@ -13,101 +13,106 @@ useSeoMeta({
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          返回熊好算頁面
+          Back to TravelBudget
         </NuxtLink>
 
-        <h1 class="privacy-title">隱私權政策</h1>
+        <h1 class="privacy-title">Privacy Policy</h1>
         <p class="privacy-app">熊好算 TravelBudget</p>
-        <p class="privacy-updated">最後更新：2026-03-30</p>
+        <p class="privacy-updated">Last Updated: 2026-03-30</p>
 
         <section class="privacy-section">
-          <h2>概述</h2>
-          <p>熊好算 TravelBudget（以下稱「本 App」）是由扣握貝果 CodeWorldBagel 開發的旅遊記帳應用程式。我們尊重並致力於保護您的個人資料。</p>
+          <h2>Overview</h2>
+          <p>熊好算 TravelBudget ("the App") is a travel expense tracking application developed by 扣握貝果 CodeWorldBagel. We respect your privacy and are committed to protecting your personal information.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>資料蒐集</h2>
-          <h3>未登入使用</h3>
-          <p>您可以在不登入的情況下使用本 App 的所有核心功能：</p>
+          <h2>Data Collection</h2>
+          <h3>Using the App Without an Account</h3>
+          <p>You may use all core features of the App without signing in. In this case:</p>
           <ul>
-            <li>所有旅行與消費資料僅儲存於<strong>您的裝置本機</strong>。</li>
-            <li>不會蒐集或傳送任何個人資料至我們的伺服器。</li>
+            <li>All trip and expense data is stored <strong>locally on your device only</strong>.</li>
+            <li>No personal information is collected or transmitted to our servers.</li>
           </ul>
 
-          <h3>使用 Apple 登入（選用）</h3>
-          <p>若您選擇使用 Apple 登入，以下資料可能會被蒐集並儲存至我們的雲端伺服器：</p>
+          <h3>Signing In with Apple (Optional)</h3>
+          <p>If you choose to sign in using Sign in with Apple, the following data may be collected and stored on our cloud server (Supabase):</p>
           <table class="privacy-table">
             <thead>
               <tr>
-                <th>資料</th>
-                <th>用途</th>
-                <th>是否連結身分</th>
+                <th>Data</th>
+                <th>Purpose</th>
+                <th>Linked to Identity</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>姓名（來自 Apple ID）</td>
-                <td>顯示於帳號區塊</td>
-                <td>是</td>
+                <td>Name (from Apple ID)</td>
+                <td>Display in account section</td>
+                <td>Yes</td>
               </tr>
               <tr>
-                <td>電子郵件（來自 Apple ID）</td>
-                <td>帳號識別</td>
-                <td>是</td>
+                <td>Email address (from Apple ID)</td>
+                <td>Account identification</td>
+                <td>Yes</td>
               </tr>
               <tr>
-                <td>旅行與消費資料</td>
-                <td>雲端備份與共編</td>
-                <td>是</td>
+                <td>Trip and expense data</td>
+                <td>Cloud backup & collaboration</td>
+                <td>Yes</td>
               </tr>
             </tbody>
           </table>
-          <p>登入為選用功能，僅在使用雲端備份或旅程共編功能時需要。</p>
+          <p>Signing in is optional and only required to use cloud backup or trip collaboration features.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>雲端儲存</h2>
-          <p>登入後，您的旅行與消費資料將同步至 <strong>Supabase</strong>（supabase.com）雲端平台。儲存的資料包含旅行名稱、預算、幣別、消費紀錄及日期。本 App 不儲存任何金融帳戶資訊或付款資料。</p>
-          <p>Supabase 隱私政策：<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">https://supabase.com/privacy</a></p>
+          <h2>Cloud Storage</h2>
+          <p>When you are signed in, your trip and expense data is synchronized to <strong>Supabase</strong> (supabase.com), a third-party cloud platform. Data stored includes trip names, budgets, currencies, expense records, and dates. No financial account information or payment data is ever stored.</p>
+          <p>Supabase's privacy policy is available at: <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">https://supabase.com/privacy</a></p>
         </section>
 
         <section class="privacy-section">
-          <h2>旅程共編</h2>
-          <p>若您透過邀請連結將旅程分享給其他使用者，共編成員可根據其角色（編輯者或查閱者）存取該旅程資料。您可隨時在分享頁面移除共編成員。</p>
+          <h2>Trip Collaboration</h2>
+          <p>If you share a trip with other users via an invite link, collaborators will have access to the trip's data (name, budget, expense records) according to their assigned role (editor or viewer). You can remove collaborators at any time from the share sheet.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>廣告</h2>
-          <p>本 App 使用 <strong>Google AdMob</strong> 顯示橫幅廣告。若您授予「允許追蹤（ATT）」權限，AdMob 可能使用裝置識別碼提供個人化廣告；若您拒絕，則僅顯示非個人化廣告。</p>
-          <p>您可透過購買 App 內的「移除廣告」永久移除所有廣告。</p>
-          <p>如需了解 Google 的資料處理方式，請參閱 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google 隱私權政策</a>。</p>
+          <h2>Advertising</h2>
+          <p>The App displays banner ads provided by <strong>Google AdMob</strong>. If you grant App Tracking Transparency (ATT) permission, AdMob may use device identifiers to serve personalized ads. If you deny ATT, only non-personalized ads are shown.</p>
+          <p>You may permanently remove all advertisements by purchasing the <strong>"Remove Ads"</strong> in-app purchase.</p>
+          <p>For more information on Google's data practices, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>照片存取</h2>
-          <p>本 App 可能會要求存取您的相簿，以便選取旅行封面圖片。所選圖片僅儲存於您的裝置本機，不會上傳至我們的伺服器。</p>
+          <h2>Photos</h2>
+          <p>The App may request access to your photo library to allow you to select a cover image for your trips. Selected images are stored locally on your device and are never uploaded to our servers.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>資料刪除</h2>
-          <p><strong>未登入：</strong>刪除 App 即可移除所有本機資料。</p>
-          <p><strong>已登入：</strong>請使用 App 內的「設定 → 帳號 → 刪除帳號」，永久刪除您的帳號及所有雲端資料。此操作無法復原。</p>
+          <h2>Data Deletion</h2>
+          <p><strong>Without an account:</strong> Delete the App to remove all local data.</p>
+          <p><strong>With an account:</strong> Use <strong>Settings → Account → Delete Account</strong> within the App to permanently delete your account and all associated cloud data (profile, trips, and collaboration records). This action is irreversible.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>兒童隱私</h2>
-          <p>本 App 不會有意蒐集 13 歲以下兒童的個人資訊。</p>
+          <h2>Data Retention</h2>
+          <p>If you delete your account, all data stored on our servers is deleted immediately. Trip data you created remains on your device in local storage until you delete the App.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>政策變更</h2>
-          <p>本隱私權政策可能不定期更新，任何變更將於本頁面反映並更新日期。</p>
+          <h2>Children's Privacy</h2>
+          <p>The App does not knowingly collect information from children under the age of 13.</p>
         </section>
 
         <section class="privacy-section">
-          <h2>聯絡方式</h2>
-          <p><strong>開發者：</strong>扣握貝果 CodeWorldBagel</p>
-          <p><strong>Email：</strong><a href="mailto:codeworldbagel@gmail.com">codeworldbagel@gmail.com</a></p>
+          <h2>Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+        </section>
+
+        <section class="privacy-section">
+          <h2>Contact</h2>
+          <p><strong>Developer:</strong> 扣握貝果 CodeWorldBagel</p>
+          <p><strong>Email:</strong> <a href="mailto:codeworldbagel@gmail.com">codeworldbagel@gmail.com</a></p>
         </section>
       </div>
     </div>
