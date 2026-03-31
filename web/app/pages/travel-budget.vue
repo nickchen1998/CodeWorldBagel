@@ -4,9 +4,29 @@ useSeoMeta({
   description: '海外旅遊輕量化記帳 App，輕鬆解決外幣輸入、匯率換算、預算控管的痛點。',
   ogTitle: '熊好算 TravelBudget - 扣握貝果',
   ogDescription: '海外旅遊輕量化記帳 App，輕鬆解決外幣輸入、匯率換算、預算控管的痛點。',
-  ogImage: '/images/travel-budget/icon.png',
+  ogImage: '/images/travel-budget/screenshot-1.png',
   ogType: 'website',
-  twitterCard: 'summary',
+  twitterCard: 'summary_large_image',
+})
+
+const screenshots = [
+  { src: '/images/travel-budget/screenshot-1.png', label: '旅行列表' },
+  { src: '/images/travel-budget/screenshot-2.png', label: '消費明細' },
+  { src: '/images/travel-budget/screenshot-3.png', label: '統計圖表' },
+  { src: '/images/travel-budget/screenshot-4.png', label: '新增旅行' },
+]
+
+const currentSlide = ref(0)
+let intervalId: ReturnType<typeof setInterval> | null = null
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    currentSlide.value = (currentSlide.value + 1) % screenshots.length
+  }, 3500)
+})
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId)
 })
 
 const features = [
@@ -59,6 +79,27 @@ const features = [
               </svg>
               App Store 下載
             </a>
+          </div>
+        </div>
+        <div class="tb-hero-screenshot">
+          <div class="tb-carousel">
+            <img
+              v-for="(shot, index) in screenshots"
+              :key="shot.src"
+              :src="shot.src"
+              :class="{ active: index === currentSlide }"
+              :alt="shot.label"
+              class="tb-carousel-slide"
+            />
+          </div>
+          <div class="tb-carousel-dots">
+            <button
+              v-for="(shot, index) in screenshots"
+              :key="index"
+              :class="{ active: index === currentSlide }"
+              class="tb-carousel-dot"
+              @click="currentSlide = index"
+            />
           </div>
         </div>
       </div>
@@ -144,21 +185,28 @@ const features = [
   overflow: hidden;
 }
 
+.tb-hero .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
 .tb-hero-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(232, 118, 58, 0.1) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 80%, rgba(232, 118, 58, 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(232, 118, 58, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(232, 118, 58, 0.05) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .tb-hero-content {
   position: relative;
   z-index: 1;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
+  text-align: left;
 }
 
 .tb-hero-badge {
@@ -179,9 +227,9 @@ const features = [
 }
 
 .tb-hero-icon img {
-  width: 100px;
-  height: 100px;
-  border-radius: 22px;
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
   box-shadow: 0 8px 32px rgba(232, 118, 58, 0.25);
 }
 
@@ -210,7 +258,7 @@ const features = [
 
 .tb-hero-actions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
 }
 
@@ -231,6 +279,60 @@ const features = [
 .tb-hero-btn:hover {
   background-color: var(--tb-accent-dark);
   transform: translateY(-2px);
+}
+
+/* Hero Screenshot / Carousel */
+.tb-hero-screenshot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tb-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 9 / 19.5;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-border);
+}
+
+.tb-carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.tb-carousel-slide.active {
+  opacity: 1;
+}
+
+.tb-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.tb-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--tb-accent-light);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tb-carousel-dot.active {
+  background-color: var(--tb-accent);
+  transform: scale(1.2);
 }
 
 /* Section titles */
@@ -351,9 +453,23 @@ const features = [
   .tb-features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .tb-hero .container {
+    gap: 40px;
+  }
+
+  .tb-carousel {
+    max-width: 220px;
+  }
 }
 
 @media (max-width: 768px) {
+  .tb-hero .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
   .tb-hero {
     padding: 60px 0;
   }
@@ -364,6 +480,14 @@ const features = [
 
   .tb-hero-tagline br {
     display: none;
+  }
+
+  .tb-hero-actions {
+    justify-content: center;
+  }
+
+  .tb-carousel {
+    max-width: 200px;
   }
 
   .tb-features-grid {
