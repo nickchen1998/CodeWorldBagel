@@ -16,6 +16,7 @@ const error = ref('')
 
 const productLabels: Record<string, string> = {
   'travel-budget': '熊好算 TravelBudget',
+  'travel-language': '熊好講 TravelLanguage',
   'travel-diary': '旅行日記 TravelDiary',
   'cotton-friend': '棉棉好朋友 CottonFriend',
   'rag-pilot': '數據領航員 RAGPilot',

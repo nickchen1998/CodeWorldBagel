@@ -38,6 +38,11 @@ useSeoMeta({
             <h3 class="product-name">熊好算</h3>
             <p class="product-desc">海外旅遊輕量化記帳，外幣換算、預算控管、多人協作一手掌握</p>
           </NuxtLink>
+          <NuxtLink to="/travel-language" class="product-card">
+            <img src="/images/travel-language/icon.png" alt="熊好講 TravelLanguage" class="product-icon-img" />
+            <h3 class="product-name">熊好講</h3>
+            <p class="product-desc">旅遊日韓語情境對話學習，把旅遊對話變成好玩的破關練習</p>
+          </NuxtLink>
           <NuxtLink to="/travel-diary" class="product-card">
             <img src="/images/travel-diary/icon.png" alt="旅行日記 TravelDiary" class="product-icon-img" />
             <h3 class="product-name">旅行日記</h3>
