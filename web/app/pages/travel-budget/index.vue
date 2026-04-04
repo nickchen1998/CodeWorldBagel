@@ -69,7 +69,7 @@ const features = [
           <p class="tb-hero-tagline">海外旅遊輕量化記帳，<br>外幣、匯率、預算一手掌握。</p>
           <div class="tb-hero-actions">
             <a
-              href="https://apps.apple.com/app/id6744042633"
+              href="https://apps.apple.com/tw/app/%E7%86%8A%E5%A5%BD%E7%AE%97-travelbudget/id6761038388"
               target="_blank"
               rel="noopener noreferrer"
               class="btn btn-primary tb-hero-btn"
@@ -79,6 +79,15 @@ const features = [
               </svg>
               App Store 下載
             </a>
+            <div class="tb-google-play-wrapper">
+              <span class="btn tb-hero-btn tb-hero-btn-disabled">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
+                </svg>
+                Google Play
+              </span>
+              <span class="tb-coming-soon">敬請期待</span>
+            </div>
           </div>
         </div>
         <div class="tb-hero-screenshot">
@@ -153,7 +162,7 @@ const features = [
           <h2 class="tb-cta-title">開始你的旅遊記帳</h2>
           <p class="tb-cta-desc">免費下載，地端與雲端皆可使用，<br>一個人出遊或多人共遊都適合。</p>
           <a
-            href="https://apps.apple.com/app/id6744042633"
+            href="https://apps.apple.com/tw/app/%E7%86%8A%E5%A5%BD%E7%AE%97-travelbudget/id6761038388"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-primary tb-cta-btn"
@@ -163,6 +172,15 @@ const features = [
             </svg>
             App Store 下載
           </a>
+          <div class="tb-google-play-wrapper">
+            <span class="btn tb-cta-btn tb-cta-btn-disabled">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
+              </svg>
+              Google Play
+            </span>
+            <span class="tb-coming-soon">敬請期待</span>
+          </div>
         </div>
       </div>
     </section>
@@ -281,6 +299,25 @@ const features = [
   transform: translateY(-2px);
 }
 
+.tb-hero-btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tb-google-play-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.tb-coming-soon {
+  font-size: 12px;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
 /* Hero Screenshot / Carousel */
 .tb-hero-screenshot {
   display: flex;
@@ -316,23 +353,29 @@ const features = [
 .tb-carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   margin-top: 20px;
 }
 
 .tb-carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: none;
-  background-color: var(--tb-accent-light);
+  border: 2px solid var(--tb-accent);
+  background-color: transparent;
   cursor: pointer;
   transition: var(--transition);
+  padding: 0;
+}
+
+.tb-carousel-dot:hover {
+  background-color: var(--tb-accent-light);
+  transform: scale(1.15);
 }
 
 .tb-carousel-dot.active {
   background-color: var(--tb-accent);
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
 /* Section titles */
@@ -446,6 +489,12 @@ const features = [
 .tb-cta-btn:hover {
   background-color: var(--tb-accent-dark);
   transform: translateY(-2px);
+}
+
+.tb-cta-btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Responsive */
