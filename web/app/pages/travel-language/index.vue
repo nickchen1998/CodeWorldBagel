@@ -1,12 +1,43 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/travel-language`
+
 useSeoMeta({
   title: '熊好講 TravelLanguage - 扣握貝果',
   description: '旅遊日語韓語情境對話學習 App，把旅遊對話變成一場好玩的破關練習。',
   ogTitle: '熊好講 TravelLanguage - 扣握貝果',
   ogDescription: '旅遊日語韓語情境對話學習 App，把旅遊對話變成一場好玩的破關練習。',
-  ogImage: '/images/travel-language/screenshot-1.png',
+  ogImage: `${siteUrl}/images/travel-language/screenshot-1.png`,
+  ogUrl: pageUrl,
   ogType: 'website',
   twitterCard: 'summary_large_image',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: '熊好講 TravelLanguage',
+        description: '旅遊日語韓語情境對話學習 App，把旅遊對話變成一場好玩的破關練習。',
+        url: pageUrl,
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'iOS',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD'
+        },
+        author: {
+          '@type': 'Organization',
+          name: '扣握貝果 CodeWorldBagel'
+        }
+      })
+    }
+  ]
 })
 
 const showcases = [

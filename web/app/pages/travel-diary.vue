@@ -1,12 +1,43 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/travel-diary`
+
 useSeoMeta({
   title: '旅行日記 TravelDiary - 扣握貝果',
   description: '策劃記錄每一次旅行，以圖文並茂的方式珍藏每段旅途的美好時刻，與親友分享你的旅行故事。',
   ogTitle: '旅行日記 TravelDiary - 扣握貝果',
   ogDescription: '策劃記錄每一次旅行，以圖文並茂的方式珍藏每段旅途的美好時刻，與親友分享你的旅行故事。',
-  ogImage: '/images/travel-diary/hero.png',
+  ogImage: `${siteUrl}/images/travel-diary/hero.png`,
+  ogUrl: pageUrl,
   ogType: 'website',
   twitterCard: 'summary_large_image',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: '旅行日記 TravelDiary',
+        description: '策劃記錄每一次旅行，以圖文並茂的方式珍藏每段旅途的美好時刻，與親友分享你的旅行故事。',
+        url: pageUrl,
+        applicationCategory: 'TravelApplication',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD'
+        },
+        author: {
+          '@type': 'Organization',
+          name: '扣握貝果 CodeWorldBagel'
+        }
+      })
+    }
+  ]
 })
 
 const showcases = [

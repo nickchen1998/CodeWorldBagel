@@ -1,12 +1,36 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+
 useSeoMeta({
   title: '扣握貝果 - CodeWorldBagel',
-  description: '我們專門協助你將想法設計、開發並落地成為系統，讓你的想法跑得比世界更快。',
+  description: '我們專門打造各種實用的應用程式，從設計到開發一手包辦，讓好點子快速落地。',
   ogTitle: '扣握貝果 - CodeWorldBagel',
-  ogDescription: '我們專門協助你將想法設計、開發並落地成為系統，讓你的想法跑得比世界更快。',
-  ogImage: '/apple-touch-icon.png',
+  ogDescription: '我們專門打造各種實用的應用程式，從設計到開發一手包辦，讓好點子快速落地。',
+  ogImage: `${siteUrl}/apple-touch-icon.png`,
+  ogUrl: siteUrl,
   ogType: 'website',
   twitterCard: 'summary',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: siteUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: '扣握貝果 CodeWorldBagel',
+        url: siteUrl,
+        description: '我們專門打造各種實用的應用程式，從設計到開發一手包辦，讓好點子快速落地。',
+        publisher: {
+          '@type': 'Organization',
+          name: '扣握貝果 CodeWorldBagel',
+          logo: `${siteUrl}/apple-touch-icon.png`
+        }
+      })
+    }
+  ]
 })
 </script>
 
@@ -21,7 +45,7 @@ useSeoMeta({
           </div>
           <h1 class="hero-title">扣握貝果</h1>
           <p class="hero-subtitle">CodeWorldBagel</p>
-          <p class="hero-description">我們專門協助你將想法設計、開發並落地成為系統，<br>讓你的想法跑得比世界更快。</p>
+          <p class="hero-description">我們專門打造各種實用的應用程式，<br>從設計到開發一手包辦，讓好點子快速落地。</p>
         </div>
       </div>
       <div class="hero-background"></div>

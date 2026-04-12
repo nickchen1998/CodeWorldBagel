@@ -79,3 +79,55 @@
 
 - `1024px` — features grid 兩欄、showcase gap 縮小
 - `768px` — 單欄佈局、hero 調整、font-size 縮小
+
+## SEO / GEO 規範
+
+### 基本 Meta（每個頁面必備）
+
+每個頁面的 `<script setup>` 必須包含：
+
+```ts
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/your-path`
+
+useSeoMeta({
+  title: '頁面標題 - 扣握貝果',
+  description: '頁面描述',
+  ogTitle: '同 title',
+  ogDescription: '同 description',
+  ogImage: `${siteUrl}/images/...`,  // 必須是完整 URL
+  ogUrl: pageUrl,
+  ogType: 'website',
+  twitterCard: 'summary_large_image',  // 有大圖用 summary_large_image，否則 summary
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
+})
+```
+
+### 全站 Meta（nuxt.config.ts 管理）
+
+以下由 `nuxt.config.ts` 全域注入，頁面內不重複設定：
+- `og:locale`（`zh_TW`）
+- `og:site_name`（`扣握貝果 CodeWorldBagel`）
+- Organization JSON-LD
+
+### JSON-LD 結構化資料
+
+- 首頁：`WebSite` schema
+- 產品頁：`SoftwareApplication` schema，包含 name、description、applicationCategory、operatingSystem、offers、author
+- 未上線產品的 offers.availability 設為 `https://schema.org/PreOrder`
+- JSON-LD 透過 `useHead({ script: [{ type: 'application/ld+json', innerHTML: JSON.stringify({...}) }] })` 注入
+
+### ogImage 規則
+
+- 必須使用完整 URL（`https://code-world-bagel.com/images/...`），不可使用相對路徑
+- 產品頁使用產品截圖，隱私權政策頁使用產品 icon
+
+### 新增頁面 SEO checklist
+
+1. `useSeoMeta` 含完整欄位（title, description, og*, twitterCard）
+2. `useHead` 含 canonical link
+3. 產品頁含對應 JSON-LD
+4. ogImage 使用完整 URL

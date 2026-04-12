@@ -1,7 +1,20 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/travel-budget/privacy-policy`
+
 useSeoMeta({
   title: 'Privacy Policy — 熊好算 TravelBudget',
   description: 'Privacy Policy for 熊好算 TravelBudget. Learn about data collection, cloud storage, advertising, and data deletion.',
+  ogTitle: 'Privacy Policy — 熊好算 TravelBudget',
+  ogDescription: 'Privacy Policy for 熊好算 TravelBudget. Learn about data collection, cloud storage, advertising, and data deletion.',
+  ogImage: `${siteUrl}/images/travel-budget/icon.png`,
+  ogUrl: pageUrl,
+  ogType: 'website',
+  twitterCard: 'summary',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
 })
 </script>
 

@@ -1,12 +1,43 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/rag-pilot`
+
 useSeoMeta({
   title: '數據領航員 RAGPilot - 扣握貝果',
   description: '協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
   ogTitle: '數據領航員 RAGPilot - 扣握貝果',
   ogDescription: '協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
-  ogImage: '/images/rag-pilot/icon.png',
+  ogImage: `${siteUrl}/images/rag-pilot/icon.png`,
+  ogUrl: pageUrl,
   ogType: 'website',
-  twitterCard: 'summary',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: '數據領航員 RAGPilot',
+        description: '協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究，讓資料搜尋與分析更有效率。',
+        url: pageUrl,
+        applicationCategory: 'BusinessApplication',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD',
+          availability: 'https://schema.org/PreOrder'
+        },
+        author: {
+          '@type': 'Organization',
+          name: '扣握貝果 CodeWorldBagel'
+        }
+      })
+    }
+  ]
 })
 
 const showComingSoon = ref(false)

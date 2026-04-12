@@ -1,12 +1,43 @@
 <script setup lang="ts">
+const siteUrl = 'https://code-world-bagel.com'
+const pageUrl = `${siteUrl}/travel-budget`
+
 useSeoMeta({
   title: '熊好算 TravelBudget - 扣握貝果',
   description: '海外旅遊輕量化記帳 App，輕鬆解決外幣輸入、匯率換算、預算控管的痛點。',
   ogTitle: '熊好算 TravelBudget - 扣握貝果',
   ogDescription: '海外旅遊輕量化記帳 App，輕鬆解決外幣輸入、匯率換算、預算控管的痛點。',
-  ogImage: '/images/travel-budget/screenshot-1.png',
+  ogImage: `${siteUrl}/images/travel-budget/screenshot-1.png`,
+  ogUrl: pageUrl,
   ogType: 'website',
   twitterCard: 'summary_large_image',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: pageUrl }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: '熊好算 TravelBudget',
+        description: '海外旅遊輕量化記帳 App，輕鬆解決外幣輸入、匯率換算、預算控管的痛點。',
+        url: pageUrl,
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'iOS',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'TWD'
+        },
+        author: {
+          '@type': 'Organization',
+          name: '扣握貝果 CodeWorldBagel'
+        }
+      })
+    }
+  ]
 })
 
 const showcases = [
