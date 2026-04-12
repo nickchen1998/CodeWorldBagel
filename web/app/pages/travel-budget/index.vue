@@ -68,7 +68,7 @@ const features = [
       <div class="tb-hero-bg"></div>
       <div class="container">
         <div class="tb-hero-content">
-          <div class="tb-hero-badge">Travel Product</div>
+          <div class="tb-hero-badge">旅遊記帳</div>
           <div class="tb-hero-icon">
             <img src="/images/travel-budget/icon.png" alt="熊好算 TravelBudget" />
           </div>
