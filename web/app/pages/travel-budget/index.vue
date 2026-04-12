@@ -9,25 +9,28 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const screenshots = [
-  { src: '/images/travel-budget/screenshot-1.png', label: '旅行列表' },
-  { src: '/images/travel-budget/screenshot-2.png', label: '消費明細' },
-  { src: '/images/travel-budget/screenshot-3.png', label: '統計圖表' },
-  { src: '/images/travel-budget/screenshot-4.png', label: '新增旅行' },
+const showcases = [
+  {
+    src: '/images/travel-budget/screenshot-1.png',
+    title: '管理你的每趟旅行',
+    description: '一目瞭然所有旅行紀錄，花費總覽、幣別與日期一眼掌握。'
+  },
+  {
+    src: '/images/travel-budget/screenshot-2.png',
+    title: '逐筆記錄每筆花費',
+    description: '依日期分組瀏覽消費明細，支援多幣別輸入，自動換算回主幣別。'
+  },
+  {
+    src: '/images/travel-budget/screenshot-3.png',
+    title: '圖表化你的旅遊開支',
+    description: '以圓餅圖與長條圖分析消費分類佔比，輕鬆掌握錢都花在哪。'
+  },
+  {
+    src: '/images/travel-budget/screenshot-4.png',
+    title: '快速開啟新旅行',
+    description: '設定旅行名稱、日期、幣別與預算，幾秒內完成建立。'
+  },
 ]
-
-const currentSlide = ref(0)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  intervalId = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % screenshots.length
-  }, 3500)
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
 
 const features = [
   {
@@ -79,36 +82,28 @@ const features = [
               </svg>
               App Store 下載
             </a>
-            <div class="tb-google-play-wrapper">
-              <span class="btn tb-hero-btn tb-hero-btn-disabled">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
-                </svg>
-                Google Play
-              </span>
-              <span class="tb-coming-soon">敬請期待</span>
-            </div>
           </div>
         </div>
-        <div class="tb-hero-screenshot">
-          <div class="tb-carousel">
-            <img
-              v-for="(shot, index) in screenshots"
-              :key="shot.src"
-              :src="shot.src"
-              :class="{ active: index === currentSlide }"
-              :alt="shot.label"
-              class="tb-carousel-slide"
-            />
+      </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="tb-showcase">
+      <div class="container">
+        <h2 class="tb-section-title">產品預覽</h2>
+        <p class="tb-section-subtitle">滑動探索熊好算的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="tb-showcase-item"
+          :class="{ 'tb-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="tb-showcase-image">
+            <img :src="item.src" :alt="item.title" />
           </div>
-          <div class="tb-carousel-dots">
-            <button
-              v-for="(shot, index) in screenshots"
-              :key="index"
-              :class="{ active: index === currentSlide }"
-              class="tb-carousel-dot"
-              @click="currentSlide = index"
-            />
+          <div class="tb-showcase-text">
+            <h3 class="tb-showcase-title">{{ item.title }}</h3>
+            <p class="tb-showcase-desc">{{ item.description }}</p>
           </div>
         </div>
       </div>
@@ -172,15 +167,6 @@ const features = [
             </svg>
             App Store 下載
           </a>
-          <div class="tb-google-play-wrapper">
-            <span class="btn tb-cta-btn tb-cta-btn-disabled">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
-              </svg>
-              Google Play
-            </span>
-            <span class="tb-coming-soon">敬請期待</span>
-          </div>
         </div>
       </div>
     </section>
@@ -199,6 +185,9 @@ const features = [
 /* Hero */
 .tb-hero {
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
   padding: 100px 0 80px;
   overflow: hidden;
 }
@@ -206,10 +195,8 @@ const features = [
 .tb-hero .container {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .tb-hero-bg {
@@ -224,7 +211,8 @@ const features = [
 .tb-hero-content {
   position: relative;
   z-index: 1;
-  text-align: left;
+  text-align: center;
+  max-width: 560px;
 }
 
 .tb-hero-badge {
@@ -276,7 +264,7 @@ const features = [
 
 .tb-hero-actions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -299,83 +287,62 @@ const features = [
   transform: translateY(-2px);
 }
 
-.tb-hero-btn-disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  pointer-events: none;
+/* Showcase */
+.tb-showcase {
+  padding: 80px 0;
 }
 
-.tb-google-play-wrapper {
-  display: flex;
-  flex-direction: column;
+.tb-showcase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
-  gap: 6px;
+  padding: 40px 0;
 }
 
-.tb-coming-soon {
-  font-size: 12px;
-  color: var(--color-text-light);
-  font-weight: 500;
+.tb-showcase-item + .tb-showcase-item {
+  border-top: 1px solid var(--color-border);
 }
 
-/* Hero Screenshot / Carousel */
-.tb-hero-screenshot {
+.tb-showcase-reverse {
+  direction: rtl;
+}
+
+.tb-showcase-reverse > * {
+  direction: ltr;
+}
+
+.tb-showcase-image {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
-.tb-carousel {
-  position: relative;
+.tb-showcase-image img {
   width: 100%;
   max-width: 260px;
-  aspect-ratio: 9 / 19.5;
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--color-border);
 }
 
-.tb-carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.tb-carousel-slide.active {
-  opacity: 1;
-}
-
-.tb-carousel-dots {
+.tb-showcase-text {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
 }
 
-.tb-carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--tb-accent);
-  background-color: transparent;
-  cursor: pointer;
-  transition: var(--transition);
-  padding: 0;
+.tb-showcase-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 
-.tb-carousel-dot:hover {
-  background-color: var(--tb-accent-light);
-  transform: scale(1.15);
-}
-
-.tb-carousel-dot.active {
-  background-color: var(--tb-accent);
-  transform: scale(1.25);
+.tb-showcase-desc {
+  font-size: 16px;
+  color: var(--color-text-light);
+  line-height: 1.7;
 }
 
 /* Section titles */
@@ -491,52 +458,63 @@ const features = [
   transform: translateY(-2px);
 }
 
-.tb-cta-btn-disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .tb-features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .tb-hero .container {
+  .tb-showcase-item {
     gap: 40px;
   }
 
-  .tb-carousel {
+  .tb-showcase-image img {
     max-width: 220px;
   }
 }
 
 @media (max-width: 768px) {
-  .tb-hero .container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
+  .tb-hero {
+    min-height: auto;
+    padding: 40px 0;
   }
 
-  .tb-hero {
-    padding: 60px 0;
+  .tb-hero-content {
+    min-height: calc(100dvh - 60px - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .tb-hero-title {
     font-size: 36px;
   }
 
-  .tb-hero-tagline br {
-    display: none;
+  .tb-showcase {
+    padding: 60px 0;
   }
 
-  .tb-hero-actions {
-    justify-content: center;
+  .tb-showcase-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
   }
 
-  .tb-carousel {
+  .tb-showcase-reverse {
+    direction: ltr;
+  }
+
+  .tb-showcase-image img {
     max-width: 200px;
+  }
+
+  .tb-showcase-title {
+    font-size: 22px;
+  }
+
+  .tb-features {
+    padding: 60px 0;
   }
 
   .tb-features-grid {
@@ -546,6 +524,10 @@ const features = [
 
   .tb-section-title {
     font-size: 26px;
+  }
+
+  .tb-cta {
+    padding: 60px 0;
   }
 }
 </style>
