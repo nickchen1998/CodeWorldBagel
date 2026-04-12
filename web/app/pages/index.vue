@@ -48,6 +48,14 @@ useSeoMeta({
             <h3 class="product-name">旅行日記</h3>
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
+          <NuxtLink to="/rag-pilot" class="product-card">
+            <div class="product-icon-wrapper">
+              <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" class="product-icon-img" />
+              <span class="product-badge-preparing">產品準備中</span>
+            </div>
+            <h3 class="product-name">數據領航員 RAGPilot</h3>
+            <p class="product-desc">協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究</p>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -156,7 +164,7 @@ useSeoMeta({
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
@@ -175,12 +183,35 @@ useSeoMeta({
   border-color: var(--color-primary-light);
 }
 
+.product-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
 .product-icon-img {
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  margin-bottom: 20px;
   object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.product-icon-wrapper .product-icon-img {
+  margin-bottom: 0;
+}
+
+.product-badge-preparing {
+  position: absolute;
+  top: -8px;
+  right: -36px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #b45309;
+  background-color: #fef3c7;
+  border-radius: 10px;
+  white-space: nowrap;
 }
 
 .product-name {

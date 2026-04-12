@@ -17,7 +17,8 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: '熊好算 TravelBudget', href: '/travel-budget' },
       { label: '熊好講 TravelLanguage', href: '/travel-language' },
-      { label: '旅行日記 TravelDiary', href: '/travel-diary' }
+      { label: '旅行日記 TravelDiary', href: '/travel-diary' },
+      { label: '數據領航員 RAGPilot', href: '/rag-pilot' }
     ]
   },
   {
