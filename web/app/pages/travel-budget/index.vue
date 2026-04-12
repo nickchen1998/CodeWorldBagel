@@ -88,6 +88,7 @@ const features = [
               App Store 下載
             </a>
           </div>
+          <NuxtLink to="/travel-budget/privacy-policy" class="tb-privacy-link">隱私權政策</NuxtLink>
         </div>
       </div>
     </section>
@@ -172,6 +173,7 @@ const features = [
             </svg>
             App Store 下載
           </a>
+          <NuxtLink to="/travel-budget/privacy-policy" class="tb-privacy-link">隱私權政策</NuxtLink>
         </div>
       </div>
     </section>
@@ -461,6 +463,18 @@ const features = [
 .tb-cta-btn:hover {
   background-color: var(--tb-accent-dark);
   transform: translateY(-2px);
+}
+
+.tb-privacy-link {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-text-light);
+  transition: var(--transition);
+}
+
+.tb-privacy-link:hover {
+  color: var(--tb-accent-dark);
 }
 
 /* Responsive */

@@ -46,16 +46,24 @@ const features = [
             <div class="rp-hero-badge">AI Research</div>
             <div class="rp-hero-badge rp-badge-preparing">產品準備中</div>
           </div>
+          <div class="rp-hero-icon">
+            <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" />
+          </div>
           <h1 class="rp-hero-title">數據領航員</h1>
           <p class="rp-hero-subtitle">RAGPilot</p>
           <p class="rp-hero-tagline">協助你在大量政府公開資料當中快速找尋想要的內容，<br>並進行深度研究。</p>
-          <button class="btn btn-primary rp-hero-btn rp-hero-btn-desktop" @click="showComingSoon = true">免費試用</button>
+          <button class="btn btn-primary rp-hero-btn" @click="showComingSoon = true">免費試用</button>
         </div>
-        <div class="rp-hero-visual">
-          <div class="rp-coming-soon-placeholder">
-            <span class="rp-coming-soon-text">Coming Soon ~</span>
-          </div>
-          <button class="btn btn-primary rp-hero-btn rp-hero-btn-mobile" @click="showComingSoon = true">免費試用</button>
+      </div>
+    </section>
+
+    <!-- Showcase (Coming Soon) -->
+    <section class="rp-showcase">
+      <div class="container">
+        <h2 class="rp-section-title">產品預覽</h2>
+        <p class="rp-section-subtitle">探索數據領航員的核心體驗</p>
+        <div class="rp-coming-soon-placeholder">
+          <span class="rp-coming-soon-text">Coming Soon ~</span>
         </div>
       </div>
     </section>
@@ -130,6 +138,9 @@ const features = [
 /* Hero */
 .rp-hero {
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
   padding: 100px 0 80px;
   overflow: hidden;
 }
@@ -137,10 +148,8 @@ const features = [
 .rp-hero .container {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .rp-hero-bg {
@@ -152,10 +161,18 @@ const features = [
   pointer-events: none;
 }
 
+.rp-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 560px;
+}
+
 .rp-hero-badges {
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-bottom: 24px;
   flex-wrap: wrap;
 }
 
@@ -165,7 +182,6 @@ const features = [
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--rp-accent-dark);
   background-color: var(--rp-accent-light);
   border-radius: 20px;
@@ -174,8 +190,18 @@ const features = [
 .rp-badge-preparing {
   color: #b45309;
   background-color: #fef3c7;
-  text-transform: none;
   letter-spacing: 0.04em;
+}
+
+.rp-hero-icon {
+  margin-bottom: 24px;
+}
+
+.rp-hero-icon img {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(166, 139, 75, 0.25);
 }
 
 .rp-hero-title {
@@ -198,28 +224,23 @@ const features = [
   font-size: 17px;
   color: var(--color-text-light);
   line-height: 1.7;
+  margin-bottom: 36px;
 }
 
 .rp-hero-btn {
-  margin-top: 24px;
   padding: 14px 32px;
   font-size: 16px;
   border-radius: 10px;
 }
 
-.rp-hero-btn-mobile {
-  display: none;
-}
-
-.rp-hero-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Showcase (Coming Soon) */
+.rp-showcase {
+  padding: 80px 0;
 }
 
 .rp-coming-soon-placeholder {
-  width: 100%;
-  max-width: 520px;
+  max-width: 640px;
+  margin: 0 auto;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
   background-color: var(--color-background-alt);
@@ -384,17 +405,16 @@ const features = [
 }
 
 @media (max-width: 768px) {
-  .rp-hero .container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-
   .rp-hero {
-    padding: 60px 0;
+    min-height: auto;
+    padding: 40px 0;
   }
 
-  .rp-hero-badges {
+  .rp-hero-content {
+    min-height: calc(100dvh - 60px - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
   }
 
@@ -406,12 +426,12 @@ const features = [
     display: none;
   }
 
-  .rp-hero-btn-desktop {
-    display: none;
+  .rp-showcase {
+    padding: 60px 0;
   }
 
-  .rp-hero-btn-mobile {
-    display: inline-flex;
+  .rp-features {
+    padding: 60px 0;
   }
 
   .rp-features-grid {
@@ -421,6 +441,10 @@ const features = [
 
   .rp-section-title {
     font-size: 26px;
+  }
+
+  .rp-cta {
+    padding: 60px 0;
   }
 }
 </style>
