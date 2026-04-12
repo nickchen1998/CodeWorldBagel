@@ -30,6 +30,11 @@ const showcases = [
     title: '快速開啟新旅行',
     description: '設定旅行名稱、日期、幣別與預算，幾秒內完成建立。'
   },
+  {
+    src: '/images/travel-budget/screenshot-5.png',
+    title: '旅伴分帳一目瞭然',
+    description: '自動計算每位成員的應付金額，誰該付給誰、付多少，清清楚楚。'
+  },
 ]
 
 const features = [
