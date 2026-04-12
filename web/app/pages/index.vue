@@ -48,22 +48,6 @@ useSeoMeta({
             <h3 class="product-name">旅行日記</h3>
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
-          <NuxtLink to="/cotton-friend" class="product-card">
-            <div class="product-icon">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="13" r="7" stroke="currentColor" stroke-width="2"/>
-                <path d="M10 22c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M16 10v6M13 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 class="product-name">棉棉好朋友</h3>
-            <p class="product-desc">智慧生理期管理 Line 機器人，貼心守護你的每一天</p>
-          </NuxtLink>
-          <NuxtLink to="/rag-pilot" class="product-card">
-            <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" class="product-icon-img" />
-            <h3 class="product-name">數據領航員 RAGPilot</h3>
-            <p class="product-desc">協助你在大量政府公開資料當中快速找尋想要的內容並進行深度研究</p>
-          </NuxtLink>
         </div>
       </div>
     </section>
@@ -172,7 +156,7 @@ useSeoMeta({
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
@@ -189,18 +173,6 @@ useSeoMeta({
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   border-color: var(--color-primary-light);
-}
-
-.product-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  background-color: var(--color-primary-light);
-  border-radius: 16px;
-  color: var(--color-primary-dark);
-  margin-bottom: 20px;
 }
 
 .product-icon-img {
