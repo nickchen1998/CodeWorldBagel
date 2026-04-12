@@ -16,12 +16,12 @@ const showcases = [
     description: '一目瞭然所有旅行紀錄，花費總覽、幣別與日期一眼掌握。'
   },
   {
-    src: '/images/travel-budget/screenshot-2.png',
+    src: '/images/travel-budget/screenshot-3.png',
     title: '逐筆記錄每筆花費',
     description: '依日期分組瀏覽消費明細，支援多幣別輸入，自動換算回主幣別。'
   },
   {
-    src: '/images/travel-budget/screenshot-3.png',
+    src: '/images/travel-budget/screenshot-2.png',
     title: '圖表化你的旅遊開支',
     description: '以圓餅圖與長條圖分析消費分類佔比，輕鬆掌握錢都花在哪。'
   },
