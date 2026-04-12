@@ -9,26 +9,23 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const heroImages = [
-  '/images/travel-diary/hero.png',
-  '/images/travel-diary/hero-2.png',
-  '/images/travel-diary/hero-3.png'
+const showcases = [
+  {
+    src: '/images/travel-diary/hero.png',
+    title: '規劃你的旅行行程',
+    description: '建立旅行計畫，安排每日行程與景點，從靈感到出發一氣呵成。'
+  },
+  {
+    src: '/images/travel-diary/hero-2.png',
+    title: '圖文並茂記錄旅程',
+    description: '以照片和文字記錄旅途中的每個精彩瞬間，留住珍貴回憶。'
+  },
+  {
+    src: '/images/travel-diary/hero-3.png',
+    title: '與親友分享故事',
+    description: '將旅行日記分享給親友，讓美好回憶不只留在自己心中。'
+  },
 ]
-
-const currentSlide = ref(0)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  if (heroImages.length > 1) {
-    intervalId = setInterval(() => {
-      currentSlide.value = (currentSlide.value + 1) % heroImages.length
-    }, 4000)
-  }
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
 
 const features = [
   {
@@ -67,33 +64,36 @@ const destinations = [
       <div class="td-hero-bg"></div>
       <div class="container">
         <div class="td-hero-content">
-          <div class="td-hero-badge">Travel Product</div>
+          <div class="td-hero-badge">旅遊日誌</div>
+          <div class="td-hero-icon">
+            <img src="/images/travel-diary/icon.png" alt="旅行日記 TravelDiary" />
+          </div>
           <h1 class="td-hero-title">旅行日記</h1>
           <p class="td-hero-subtitle">TravelDiary</p>
           <p class="td-hero-tagline">策劃記錄每一次旅行，<br>珍藏每段旅途的美好時刻。</p>
-          <a href="https://travel-diary.io" target="_blank" rel="noopener noreferrer" class="btn btn-primary td-hero-btn td-hero-btn-desktop">立即體驗</a>
+          <a href="https://travel-diary.io" target="_blank" rel="noopener noreferrer" class="btn btn-primary td-hero-btn">立即體驗</a>
         </div>
-        <div class="td-hero-screenshot">
-          <div class="td-carousel">
-            <img
-              v-for="(src, index) in heroImages"
-              :key="src"
-              :src="src"
-              :class="{ active: index === currentSlide }"
-              alt="旅行日記產品截圖"
-              class="td-carousel-slide"
-            />
+      </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="td-showcase">
+      <div class="container">
+        <h2 class="td-section-title">產品預覽</h2>
+        <p class="td-section-subtitle">探索旅行日記的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="td-showcase-item"
+          :class="{ 'td-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="td-showcase-image">
+            <img :src="item.src" :alt="item.title" />
           </div>
-          <div v-if="heroImages.length > 1" class="td-carousel-dots">
-            <button
-              v-for="(_, index) in heroImages"
-              :key="index"
-              :class="{ active: index === currentSlide }"
-              class="td-carousel-dot"
-              @click="currentSlide = index"
-            />
+          <div class="td-showcase-text">
+            <h3 class="td-showcase-title">{{ item.title }}</h3>
+            <p class="td-showcase-desc">{{ item.description }}</p>
           </div>
-          <a href="https://travel-diary.io" target="_blank" rel="noopener noreferrer" class="btn btn-primary td-hero-btn td-hero-btn-mobile">立即體驗</a>
         </div>
       </div>
     </section>
@@ -106,24 +106,20 @@ const destinations = [
         <div class="td-features-grid">
           <div v-for="feature in features" :key="feature.title" class="td-feature-card">
             <div class="td-feature-icon">
-              <!-- Journal -->
               <svg v-if="feature.icon === 'journal'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <path d="M5 4h18a2 2 0 012 2v16a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M9 9h10M9 13h10M9 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
-              <!-- Search -->
               <svg v-if="feature.icon === 'search'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M18 18l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
-              <!-- Share -->
               <svg v-if="feature.icon === 'share'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <circle cx="20" cy="6" r="4" stroke="currentColor" stroke-width="1.8"/>
                 <circle cx="8" cy="14" r="4" stroke="currentColor" stroke-width="1.8"/>
                 <circle cx="20" cy="22" r="4" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M11.5 12L16.5 8M11.5 16L16.5 20" stroke="currentColor" stroke-width="1.8"/>
               </svg>
-              <!-- Plan -->
               <svg v-if="feature.icon === 'plan'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <rect x="4" y="4" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M4 10h20M10 4v20" stroke="currentColor" stroke-width="1.8"/>
@@ -137,7 +133,7 @@ const destinations = [
       </div>
     </section>
 
-    <!-- App Preview -->
+    <!-- Destinations -->
     <section class="td-preview">
       <div class="container">
         <h2 class="td-section-title">探索旅程</h2>
@@ -165,7 +161,7 @@ const destinations = [
         <div class="td-cta-inner">
           <h2 class="td-cta-title">開始記錄你的旅程</h2>
           <p class="td-cta-desc">每段旅途都有故事，讓旅行日記幫你珍藏。</p>
-          <a href="#" class="btn btn-primary td-cta-btn">立即體驗</a>
+          <a href="https://travel-diary.io" target="_blank" rel="noopener noreferrer" class="btn btn-primary td-cta-btn">立即體驗</a>
         </div>
       </div>
     </section>
@@ -184,6 +180,9 @@ const destinations = [
 /* Hero */
 .td-hero {
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
   padding: 100px 0 80px;
   overflow: hidden;
 }
@@ -191,10 +190,8 @@ const destinations = [
 .td-hero .container {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 60px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .td-hero-bg {
@@ -206,17 +203,34 @@ const destinations = [
   pointer-events: none;
 }
 
+.td-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 560px;
+}
+
 .td-hero-badge {
   display: inline-block;
   padding: 6px 14px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--td-accent-dark);
   background-color: var(--td-accent-light);
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.td-hero-icon {
+  margin-bottom: 24px;
+}
+
+.td-hero-icon img {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(166, 139, 75, 0.25);
 }
 
 .td-hero-title {
@@ -239,98 +253,71 @@ const destinations = [
   font-size: 17px;
   color: var(--color-text-light);
   line-height: 1.7;
+  margin-bottom: 36px;
 }
 
 .td-hero-btn {
-  margin-top: 24px;
   padding: 14px 32px;
   font-size: 16px;
   border-radius: 10px;
 }
 
-.td-hero-btn-mobile {
-  display: none;
+/* Showcase */
+.td-showcase {
+  padding: 80px 0;
 }
 
-.td-hero-screenshot {
-  display: flex;
-  flex-direction: column;
+.td-showcase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
+  padding: 40px 0;
 }
 
-.td-screenshot-placeholder {
+.td-showcase-item + .td-showcase-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.td-showcase-reverse {
+  direction: rtl;
+}
+
+.td-showcase-reverse > * {
+  direction: ltr;
+}
+
+.td-showcase-image {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 12px;
-  border-radius: 12px;
-  border: 2px dashed var(--color-border);
-  background-color: var(--color-background-alt);
-  color: var(--color-text-light);
-  transition: var(--transition);
 }
 
-.td-screenshot-placeholder:hover {
-  border-color: var(--td-accent);
-  background-color: rgba(166, 139, 75, 0.04);
-}
-
-.td-carousel {
-  position: relative;
+.td-showcase-image img {
   width: 100%;
-  max-width: 680px;
-  aspect-ratio: 16 / 10;
+  max-width: 480px;
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
 }
 
-.td-carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.td-carousel-slide.active {
-  opacity: 1;
-}
-
-.td-carousel-dots {
+.td-showcase-text {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
 }
 
-.td-carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--td-accent-light);
-  cursor: pointer;
-  transition: var(--transition);
+.td-showcase-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 
-.td-carousel-dot.active {
-  background-color: var(--td-accent);
-  transform: scale(1.2);
-}
-
-.placeholder-label {
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.placeholder-path {
-  font-size: 12px;
-  opacity: 0.6;
-  font-family: monospace;
+.td-showcase-desc {
+  font-size: 16px;
+  color: var(--color-text-light);
+  line-height: 1.7;
 }
 
 /* Section titles */
@@ -402,7 +389,7 @@ const destinations = [
   line-height: 1.6;
 }
 
-/* Preview / Destinations */
+/* Destinations */
 .td-preview {
   padding: 80px 0;
 }
@@ -438,16 +425,6 @@ const destinations = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.td-image-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-light);
-  opacity: 0.4;
 }
 
 .td-destination-label {
@@ -497,33 +474,54 @@ const destinations = [
   .td-features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .td-showcase-item {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 768px) {
-  .td-hero .container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
+  .td-hero {
+    min-height: auto;
+    padding: 40px 0;
   }
 
-  .td-hero {
-    padding: 60px 0;
+  .td-hero-content {
+    min-height: calc(100dvh - 60px - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .td-hero-title {
     font-size: 36px;
   }
 
-  .td-hero-tagline br {
-    display: none;
+  .td-showcase {
+    padding: 60px 0;
   }
 
-  .td-hero-btn-desktop {
-    display: none;
+  .td-showcase-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
   }
 
-  .td-hero-btn-mobile {
-    display: inline-flex;
+  .td-showcase-reverse {
+    direction: ltr;
+  }
+
+  .td-showcase-image img {
+    max-width: 100%;
+  }
+
+  .td-showcase-title {
+    font-size: 22px;
+  }
+
+  .td-features {
+    padding: 60px 0;
   }
 
   .td-features-grid {
@@ -538,6 +536,10 @@ const destinations = [
 
   .td-section-title {
     font-size: 26px;
+  }
+
+  .td-cta {
+    padding: 60px 0;
   }
 }
 </style>

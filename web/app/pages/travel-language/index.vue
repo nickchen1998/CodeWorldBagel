@@ -9,25 +9,28 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const screenshots = [
-  { src: '/images/travel-language/screenshot-1.png', label: '情境列表' },
-  { src: '/images/travel-language/screenshot-2.png', label: '情境對話' },
-  { src: '/images/travel-language/screenshot-3.png', label: '五十音表' },
-  { src: '/images/travel-language/screenshot-4.png', label: '輸入練習' },
+const showcases = [
+  {
+    src: '/images/travel-language/screenshot-1.png',
+    title: '豐富的旅遊情境',
+    description: '居酒屋、咖啡廳、機場、超市等真實場景，選擇想練習的情境開始闖關。'
+  },
+  {
+    src: '/images/travel-language/screenshot-2.png',
+    title: '沉浸式對話練習',
+    description: '模擬真實對話情境，透過聽力選擇與跟讀練習，邊玩邊學實用會話。'
+  },
+  {
+    src: '/images/travel-language/screenshot-3.png',
+    title: '基礎假名一次掌握',
+    description: '完整五十音表搭配發音練習，從零開始打好日語基礎。'
+  },
+  {
+    src: '/images/travel-language/screenshot-4.png',
+    title: '鍵盤輸入特訓',
+    description: '練習用鍵盤打出假名與單字，訓練實際輸入能力。'
+  },
 ]
-
-const currentSlide = ref(0)
-let intervalId: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  intervalId = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % screenshots.length
-  }, 3500)
-})
-
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
 
 const features = [
   {
@@ -60,7 +63,7 @@ const features = [
       <div class="tl-hero-bg"></div>
       <div class="container">
         <div class="tl-hero-content">
-          <div class="tl-hero-badge">Travel Product</div>
+          <div class="tl-hero-badge">旅遊語言</div>
           <div class="tl-hero-icon">
             <img src="/images/travel-language/icon.png" alt="熊好講 TravelLanguage" />
           </div>
@@ -79,36 +82,28 @@ const features = [
               </svg>
               App Store 下載
             </a>
-            <div class="tl-google-play-wrapper">
-              <span class="btn tl-hero-btn tl-hero-btn-disabled">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
-                </svg>
-                Google Play
-              </span>
-              <span class="tl-coming-soon">敬請期待</span>
-            </div>
           </div>
         </div>
-        <div class="tl-hero-screenshot">
-          <div class="tl-carousel">
-            <img
-              v-for="(shot, index) in screenshots"
-              :key="shot.src"
-              :src="shot.src"
-              :class="{ active: index === currentSlide }"
-              :alt="shot.label"
-              class="tl-carousel-slide"
-            />
+      </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="tl-showcase">
+      <div class="container">
+        <h2 class="tl-section-title">產品預覽</h2>
+        <p class="tl-section-subtitle">滑動探索熊好講的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="tl-showcase-item"
+          :class="{ 'tl-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="tl-showcase-image">
+            <img :src="item.src" :alt="item.title" />
           </div>
-          <div class="tl-carousel-dots">
-            <button
-              v-for="(shot, index) in screenshots"
-              :key="index"
-              :class="{ active: index === currentSlide }"
-              class="tl-carousel-dot"
-              @click="currentSlide = index"
-            />
+          <div class="tl-showcase-text">
+            <h3 class="tl-showcase-title">{{ item.title }}</h3>
+            <p class="tl-showcase-desc">{{ item.description }}</p>
           </div>
         </div>
       </div>
@@ -122,24 +117,20 @@ const features = [
         <div class="tl-features-grid">
           <div v-for="feature in features" :key="feature.title" class="tl-feature-card">
             <div class="tl-feature-icon">
-              <!-- Scenario -->
               <svg v-if="feature.icon === 'scenario'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <path d="M4 6h20v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M4 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M9 12h10M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
-              <!-- Quiz -->
               <svg v-if="feature.icon === 'quiz'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M11 11.5c0-1.66 1.34-3 3-3s3 1.34 3 3c0 1.3-.83 2.4-2 2.82V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                 <circle cx="14" cy="19" r="1" fill="currentColor"/>
               </svg>
-              <!-- Alphabet -->
               <svg v-if="feature.icon === 'alphabet'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <text x="4" y="20" font-size="16" font-weight="600" fill="currentColor" font-family="serif">あ</text>
                 <path d="M20 8v12M17 8l3 4 3-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <!-- Keyboard -->
               <svg v-if="feature.icon === 'keyboard'" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <rect x="3" y="8" width="22" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
                 <path d="M7 12h2M12 12h4M20 12h2M7 16h2M10 16h8M20 16h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -169,15 +160,6 @@ const features = [
             </svg>
             App Store 下載
           </a>
-          <div class="tl-google-play-wrapper">
-            <span class="btn tl-cta-btn tl-cta-btn-disabled">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 20.5v-17c0-.83.52-1.28 1.23-.99l14.5 6.83c.73.36.73 1.02 0 1.35l-14.5 6.83c-.71.3-1.23-.12-1.23-.99v-.03zM15.5 12L5 17.5V6.5l10.5 5.5z"/>
-              </svg>
-              Google Play
-            </span>
-            <span class="tl-coming-soon">敬請期待</span>
-          </div>
         </div>
       </div>
     </section>
@@ -196,6 +178,9 @@ const features = [
 /* Hero */
 .tl-hero {
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
   padding: 100px 0 80px;
   overflow: hidden;
 }
@@ -203,10 +188,8 @@ const features = [
 .tl-hero .container {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .tl-hero-bg {
@@ -221,7 +204,8 @@ const features = [
 .tl-hero-content {
   position: relative;
   z-index: 1;
-  text-align: left;
+  text-align: center;
+  max-width: 560px;
 }
 
 .tl-hero-badge {
@@ -230,7 +214,6 @@ const features = [
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--tl-accent-dark);
   background-color: var(--tl-accent-light);
   border-radius: 20px;
@@ -273,7 +256,7 @@ const features = [
 
 .tl-hero-actions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -296,83 +279,62 @@ const features = [
   transform: translateY(-2px);
 }
 
-.tl-hero-btn-disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  pointer-events: none;
+/* Showcase */
+.tl-showcase {
+  padding: 80px 0;
 }
 
-.tl-google-play-wrapper {
-  display: flex;
-  flex-direction: column;
+.tl-showcase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
-  gap: 6px;
+  padding: 40px 0;
 }
 
-.tl-coming-soon {
-  font-size: 12px;
-  color: var(--color-text-light);
-  font-weight: 500;
+.tl-showcase-item + .tl-showcase-item {
+  border-top: 1px solid var(--color-border);
 }
 
-/* Hero Screenshot / Carousel */
-.tl-hero-screenshot {
+.tl-showcase-reverse {
+  direction: rtl;
+}
+
+.tl-showcase-reverse > * {
+  direction: ltr;
+}
+
+.tl-showcase-image {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
-.tl-carousel {
-  position: relative;
+.tl-showcase-image img {
   width: 100%;
   max-width: 260px;
-  aspect-ratio: 9 / 19.5;
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border-radius: 28px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--color-border);
 }
 
-.tl-carousel-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.tl-carousel-slide.active {
-  opacity: 1;
-}
-
-.tl-carousel-dots {
+.tl-showcase-text {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
 }
 
-.tl-carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--tl-accent);
-  background-color: transparent;
-  cursor: pointer;
-  transition: var(--transition);
-  padding: 0;
+.tl-showcase-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 
-.tl-carousel-dot:hover {
-  background-color: var(--tl-accent-light);
-  transform: scale(1.15);
-}
-
-.tl-carousel-dot.active {
-  background-color: var(--tl-accent);
-  transform: scale(1.25);
+.tl-showcase-desc {
+  font-size: 16px;
+  color: var(--color-text-light);
+  line-height: 1.7;
 }
 
 /* Section titles */
@@ -488,52 +450,63 @@ const features = [
   transform: translateY(-2px);
 }
 
-.tl-cta-btn-disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .tl-features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .tl-hero .container {
+  .tl-showcase-item {
     gap: 40px;
   }
 
-  .tl-carousel {
+  .tl-showcase-image img {
     max-width: 220px;
   }
 }
 
 @media (max-width: 768px) {
-  .tl-hero .container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
+  .tl-hero {
+    min-height: auto;
+    padding: 40px 0;
   }
 
-  .tl-hero {
-    padding: 60px 0;
+  .tl-hero-content {
+    min-height: calc(100dvh - 60px - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .tl-hero-title {
     font-size: 36px;
   }
 
-  .tl-hero-tagline br {
-    display: none;
+  .tl-showcase {
+    padding: 60px 0;
   }
 
-  .tl-hero-actions {
-    justify-content: center;
+  .tl-showcase-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
   }
 
-  .tl-carousel {
+  .tl-showcase-reverse {
+    direction: ltr;
+  }
+
+  .tl-showcase-image img {
     max-width: 200px;
+  }
+
+  .tl-showcase-title {
+    font-size: 22px;
+  }
+
+  .tl-features {
+    padding: 60px 0;
   }
 
   .tl-features-grid {
@@ -543,6 +516,10 @@ const features = [
 
   .tl-section-title {
     font-size: 26px;
+  }
+
+  .tl-cta {
+    padding: 60px 0;
   }
 }
 </style>
