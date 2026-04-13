@@ -88,17 +88,6 @@ const features = [
       </div>
     </section>
 
-    <!-- Showcase (Coming Soon) -->
-    <section class="rp-showcase">
-      <div class="container">
-        <h2 class="rp-section-title">產品預覽</h2>
-        <p class="rp-section-subtitle">探索數據領航員的核心體驗</p>
-        <div class="rp-coming-soon-placeholder">
-          <span class="rp-coming-soon-text">Coming Soon ~</span>
-        </div>
-      </div>
-    </section>
-
     <!-- Features -->
     <section class="rp-features">
       <div class="container">
@@ -129,6 +118,17 @@ const features = [
             <h3 class="rp-feature-title">{{ feature.title }}</h3>
             <p class="rp-feature-desc">{{ feature.description }}</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase (Coming Soon) -->
+    <section class="rp-showcase">
+      <div class="container">
+        <h2 class="rp-section-title">產品預覽</h2>
+        <p class="rp-section-subtitle">探索數據領航員的核心體驗</p>
+        <div class="rp-coming-soon-placeholder">
+          <span class="rp-coming-soon-text">Coming Soon ~</span>
         </div>
       </div>
     </section>

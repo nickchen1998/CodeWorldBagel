@@ -124,28 +124,6 @@ const features = [
       </div>
     </section>
 
-    <!-- Showcase -->
-    <section class="tb-showcase">
-      <div class="container">
-        <h2 class="tb-section-title">產品預覽</h2>
-        <p class="tb-section-subtitle">滑動探索熊好算的核心體驗</p>
-        <div
-          v-for="(item, index) in showcases"
-          :key="item.src"
-          class="tb-showcase-item"
-          :class="{ 'tb-showcase-reverse': index % 2 !== 0 }"
-        >
-          <div class="tb-showcase-image">
-            <img :src="item.src" :alt="item.title" />
-          </div>
-          <div class="tb-showcase-text">
-            <h3 class="tb-showcase-title">{{ item.title }}</h3>
-            <p class="tb-showcase-desc">{{ item.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Features -->
     <section class="tb-features">
       <div class="container">
@@ -182,6 +160,28 @@ const features = [
             </div>
             <h3 class="tb-feature-title">{{ feature.title }}</h3>
             <p class="tb-feature-desc">{{ feature.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="tb-showcase">
+      <div class="container">
+        <h2 class="tb-section-title">產品預覽</h2>
+        <p class="tb-section-subtitle">滑動探索熊好算的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="tb-showcase-item"
+          :class="{ 'tb-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="tb-showcase-image">
+            <img :src="item.src" :alt="item.title" />
+          </div>
+          <div class="tb-showcase-text">
+            <h3 class="tb-showcase-title">{{ item.title }}</h3>
+            <p class="tb-showcase-desc">{{ item.description }}</p>
           </div>
         </div>
       </div>

@@ -102,41 +102,14 @@ const features = [
           <p class="tl-hero-subtitle">TravelLanguage</p>
           <p class="tl-hero-tagline">把旅遊對話變成一場好玩的破關練習，<br>日語韓語輕鬆開口說。</p>
           <div class="tl-hero-actions">
-            <a
-              href="https://apps.apple.com/tw/app/%E7%86%8A%E5%A5%BD%E8%AC%9B-travellanguage/id6760996063"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary tl-hero-btn"
-            >
+            <button class="btn btn-primary tl-hero-btn tl-btn-disabled" disabled>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
               </svg>
-              App Store 下載
-            </a>
+              即將上線
+            </button>
           </div>
           <NuxtLink to="/travel-language/privacy-policy" class="tl-privacy-link">隱私權政策</NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- Showcase -->
-    <section class="tl-showcase">
-      <div class="container">
-        <h2 class="tl-section-title">產品預覽</h2>
-        <p class="tl-section-subtitle">滑動探索熊好講的核心體驗</p>
-        <div
-          v-for="(item, index) in showcases"
-          :key="item.src"
-          class="tl-showcase-item"
-          :class="{ 'tl-showcase-reverse': index % 2 !== 0 }"
-        >
-          <div class="tl-showcase-image">
-            <img :src="item.src" :alt="item.title" />
-          </div>
-          <div class="tl-showcase-text">
-            <h3 class="tl-showcase-title">{{ item.title }}</h3>
-            <p class="tl-showcase-desc">{{ item.description }}</p>
-          </div>
         </div>
       </div>
     </section>
@@ -175,23 +148,40 @@ const features = [
       </div>
     </section>
 
+    <!-- Showcase -->
+    <section class="tl-showcase">
+      <div class="container">
+        <h2 class="tl-section-title">產品預覽</h2>
+        <p class="tl-section-subtitle">滑動探索熊好講的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="tl-showcase-item"
+          :class="{ 'tl-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="tl-showcase-image">
+            <img :src="item.src" :alt="item.title" />
+          </div>
+          <div class="tl-showcase-text">
+            <h3 class="tl-showcase-title">{{ item.title }}</h3>
+            <p class="tl-showcase-desc">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="tl-cta">
       <div class="container">
         <div class="tl-cta-inner">
           <h2 class="tl-cta-title">出發前，先破關</h2>
           <p class="tl-cta-desc">免費下載，用旅遊情境練會話，<br>到了當地就能開口說。</p>
-          <a
-            href="https://apps.apple.com/tw/app/%E7%86%8A%E5%A5%BD%E8%AC%9B-travellanguage/id6760996063"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary tl-cta-btn"
-          >
+          <button class="btn btn-primary tl-cta-btn tl-btn-disabled" disabled>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
             </svg>
-            App Store 下載
-          </a>
+            即將上線
+          </button>
           <NuxtLink to="/travel-language/privacy-policy" class="tl-privacy-link">隱私權政策</NuxtLink>
         </div>
       </div>
@@ -481,6 +471,12 @@ const features = [
 .tl-cta-btn:hover {
   background-color: var(--tl-accent-dark);
   transform: translateY(-2px);
+}
+
+.tl-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .tl-privacy-link {

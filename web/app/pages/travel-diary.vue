@@ -107,28 +107,6 @@ const destinations = [
       </div>
     </section>
 
-    <!-- Showcase -->
-    <section class="td-showcase">
-      <div class="container">
-        <h2 class="td-section-title">產品預覽</h2>
-        <p class="td-section-subtitle">探索旅行日記的核心體驗</p>
-        <div
-          v-for="(item, index) in showcases"
-          :key="item.src"
-          class="td-showcase-item"
-          :class="{ 'td-showcase-reverse': index % 2 !== 0 }"
-        >
-          <div class="td-showcase-image">
-            <img :src="item.src" :alt="item.title" />
-          </div>
-          <div class="td-showcase-text">
-            <h3 class="td-showcase-title">{{ item.title }}</h3>
-            <p class="td-showcase-desc">{{ item.description }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Features -->
     <section class="td-features">
       <div class="container">
@@ -159,6 +137,28 @@ const destinations = [
             </div>
             <h3 class="td-feature-title">{{ feature.title }}</h3>
             <p class="td-feature-desc">{{ feature.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="td-showcase">
+      <div class="container">
+        <h2 class="td-section-title">產品預覽</h2>
+        <p class="td-section-subtitle">探索旅行日記的核心體驗</p>
+        <div
+          v-for="(item, index) in showcases"
+          :key="item.src"
+          class="td-showcase-item"
+          :class="{ 'td-showcase-reverse': index % 2 !== 0 }"
+        >
+          <div class="td-showcase-image">
+            <img :src="item.src" :alt="item.title" />
+          </div>
+          <div class="td-showcase-text">
+            <h3 class="td-showcase-title">{{ item.title }}</h3>
+            <p class="td-showcase-desc">{{ item.description }}</p>
           </div>
         </div>
       </div>
