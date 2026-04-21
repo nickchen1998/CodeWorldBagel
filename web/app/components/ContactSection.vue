@@ -18,6 +18,7 @@ const productLabels: Record<string, string> = {
   'travel-budget': '熊好算 TravelBudget',
   'travel-language': '熊好講 TravelLanguage',
   'travel-diary': '旅行日記 TravelDiary',
+  'pantrystock': '柴米油鹽 PantryStock',
   'rag-pilot': '數據領航員 RAGPilot',
   'custom': '客製化開發諮詢'
 }
@@ -96,6 +97,10 @@ async function handleSubmit() {
             <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="travel-diary" />
               <span class="checkbox-label">旅行日記 TravelDiary</span>
+            </label>
+            <label class="form-checkbox">
+              <input v-model="selectedProducts" type="checkbox" value="pantrystock" />
+              <span class="checkbox-label">柴米油鹽 PantryStock</span>
             </label>
             <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="rag-pilot" />

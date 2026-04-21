@@ -72,6 +72,11 @@ useHead({
             <h3 class="product-name">旅行日記</h3>
             <p class="product-desc">策劃記錄每一次旅行，珍藏每段旅途的美好時刻</p>
           </NuxtLink>
+          <NuxtLink to="/pantrystock" class="product-card">
+            <img src="/images/pantrystock/icon.png" alt="柴米油鹽 PantryStock" class="product-icon-img" />
+            <h3 class="product-name">柴米油鹽</h3>
+            <p class="product-desc">讓 Claude AI 陪你做台股模擬操盤實驗，純紀錄、不託管、不碰真錢</p>
+          </NuxtLink>
           <NuxtLink to="/rag-pilot" class="product-card">
             <div class="product-icon-wrapper">
               <img src="/images/rag-pilot/icon.png" alt="數據領航員 RAGPilot" class="product-icon-img" />
