@@ -67,6 +67,14 @@ useHead({
             <h3 class="product-name">熊好講</h3>
             <p class="product-desc">旅遊日韓語情境對話學習，把旅遊對話變成好玩的破關練習</p>
           </NuxtLink>
+          <NuxtLink to="/drinkla" class="product-card">
+            <div class="product-icon-wrapper">
+              <img src="/images/drinkla/icon.png" alt="喝啦 DrinkLa" class="product-icon-img" />
+              <span class="product-badge-preparing">產品準備中</span>
+            </div>
+            <h3 class="product-name">喝啦 DrinkLa</h3>
+            <p class="product-desc">為你真實使用的容器而設計的飲水紀錄，雙擊就完成今天的補水</p>
+          </NuxtLink>
           <NuxtLink to="/travel-diary" class="product-card">
             <img src="/images/travel-diary/icon.png" alt="旅行日記 TravelDiary" class="product-icon-img" />
             <h3 class="product-name">旅行日記</h3>

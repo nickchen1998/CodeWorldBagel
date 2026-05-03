@@ -17,6 +17,7 @@ const error = ref('')
 const productLabels: Record<string, string> = {
   'travel-budget': '熊好算 TravelBudget',
   'travel-language': '熊好講 TravelLanguage',
+  'drinkla': '喝啦 DrinkLa',
   'travel-diary': '旅行日記 TravelDiary',
   'pantrystock': '柴米油鹽 PantryStock',
   'rag-pilot': '數據領航員 RAGPilot',
@@ -93,6 +94,10 @@ async function handleSubmit() {
             <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="travel-language" />
               <span class="checkbox-label">熊好講 TravelLanguage</span>
+            </label>
+            <label class="form-checkbox">
+              <input v-model="selectedProducts" type="checkbox" value="drinkla" />
+              <span class="checkbox-label">喝啦 DrinkLa</span>
             </label>
             <label class="form-checkbox">
               <input v-model="selectedProducts" type="checkbox" value="travel-diary" />
