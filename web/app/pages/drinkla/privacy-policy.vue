@@ -31,7 +31,7 @@ useHead({
 
         <h1 class="privacy-title">Privacy Policy</h1>
         <p class="privacy-app">喝啦 DrinkLa</p>
-        <p class="privacy-updated">Last Updated: 2026-05-03</p>
+        <p class="privacy-updated">Last Updated: 2026-05-05</p>
 
         <section class="privacy-section">
           <h2>Overview</h2>
@@ -97,7 +97,7 @@ useHead({
         <section class="privacy-section">
           <h2>What We Do Not Do</h2>
           <ul>
-            <li>We do not show ads on the home, history, knowledge, or settings pages.</li>
+            <li>We do not show ads on the home, history, or settings pages.</li>
             <li>We do not have user accounts or cloud sync.</li>
             <li>We do not collect your name, email, phone, address, or financial information.</li>
             <li>We do not access your photos, microphone, camera, contacts, or location.</li>

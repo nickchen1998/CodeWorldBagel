@@ -4,9 +4,9 @@ const pageUrl = `${siteUrl}/drinkla`
 
 useSeoMeta({
   title: '喝啦 DrinkLa - 扣握貝果',
-  description: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步 Apple 健康。',
+  description: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步「健康」App。',
   ogTitle: '喝啦 DrinkLa - 扣握貝果',
-  ogDescription: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步 Apple 健康。',
+  ogDescription: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步「健康」App。',
   ogImage: `${siteUrl}/images/drinkla/screenshot-1.png`,
   ogUrl: pageUrl,
   ogType: 'website',
@@ -22,7 +22,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
         name: '喝啦 DrinkLa',
-        description: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步 Apple 健康。',
+        description: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步「健康」App。',
         url: pageUrl,
         applicationCategory: 'HealthApplication',
         operatingSystem: 'iOS',
@@ -54,13 +54,8 @@ const showcases = [
   },
   {
     src: '/images/drinkla/screenshot-3.png',
-    title: '從基礎到衛教的補水知識',
-    description: '基礎、計算、時機、品質、警示、衛教六大類，整理過敏、運動、年長者等場景的補水重點。'
-  },
-  {
-    src: '/images/drinkla/screenshot-4.png',
     title: '提醒、容器、目標一頁搞定',
-    description: '可在自訂時段、頻率裡安靜提醒，通知上的快捷按鈕一按就紀錄。預設整合 Apple 健康，跟其他健康資料一起呈現。'
+    description: '可在自訂時段、頻率裡安靜提醒，通知上的快捷按鈕一按就紀錄。預設整合「健康」App，跟其他健康資料一起呈現。'
   },
 ]
 
@@ -82,7 +77,7 @@ const features = [
   },
   {
     icon: 'health',
-    title: '同步 Apple 健康',
+    title: '同步「健康」App',
     description: '寫入「健康」App 的水分項目，趨勢跟其他指標一起檢視'
   }
 ]
