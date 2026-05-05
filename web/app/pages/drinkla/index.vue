@@ -7,7 +7,7 @@ useSeoMeta({
   description: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步「健康」App。',
   ogTitle: '喝啦 DrinkLa - 扣握貝果',
   ogDescription: '為你真實使用的容器而設計的飲水紀錄 App，雙擊就完成今天的補水。安靜、不打擾，可同步「健康」App。',
-  ogImage: `${siteUrl}/images/drinkla/screenshot-1.png`,
+  ogImage: `${siteUrl}/images/drinkla/02-home.png`,
   ogUrl: pageUrl,
   ogType: 'website',
   twitterCard: 'summary_large_image',
@@ -43,17 +43,22 @@ useHead({
 
 const showcases = [
   {
-    src: '/images/drinkla/screenshot-1.png',
+    src: '/images/drinkla/01-onboarding-welcome.png',
+    title: '幾個問題，算出你今天該喝多少',
+    description: '輸入暱稱、體重、活動量與所處環境，喝啦會幫你算出每日水分目標，不用翻計算機、不用查表。'
+  },
+  {
+    src: '/images/drinkla/02-home.png',
     title: '雙擊整瓶整杯，省去手動輸入',
     description: '把你真正在用的保溫瓶、馬克杯都建檔。要紀錄時：選一次、再點一次就完成，不用打字、不用拉滑桿。'
   },
   {
-    src: '/images/drinkla/screenshot-2.png',
+    src: '/images/drinkla/03-history.png',
     title: '月曆檢視每天的補水',
     description: '一眼看出哪幾天有達標、哪幾天偷懶。每筆紀錄都帶上時間與來源容器，回看不用大腦。'
   },
   {
-    src: '/images/drinkla/screenshot-3.png',
+    src: '/images/drinkla/04-settings.png',
     title: '提醒、容器、目標一頁搞定',
     description: '可在自訂時段、頻率裡安靜提醒，通知上的快捷按鈕一按就紀錄。預設整合「健康」App，跟其他健康資料一起呈現。'
   },
