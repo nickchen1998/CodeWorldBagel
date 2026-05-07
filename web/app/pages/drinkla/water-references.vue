@@ -839,12 +839,12 @@ blockquote {
     display: block;
     position: fixed;
     top: 120px;
-    left: calc(50% + 400px);
+    right: calc(50% + 400px);
     width: 220px;
     max-height: calc(100vh - 160px);
     overflow-y: auto;
-    padding-left: 16px;
-    border-left: 1px solid var(--color-border);
+    padding-right: 16px;
+    border-right: 1px solid var(--color-border);
   }
 
   .toc-desktop .toc-title {
@@ -868,13 +868,13 @@ blockquote {
 
   .toc-desktop a {
     display: block;
-    padding: 6px 0 6px 12px;
-    margin-left: -1px;
+    padding: 6px 12px 6px 0;
+    margin-right: -17px;
     font-size: 13px;
     line-height: 1.5;
     color: var(--color-text-light);
     text-decoration: none;
-    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
     transition: var(--transition);
   }
 
@@ -885,7 +885,7 @@ blockquote {
   .toc-desktop li.active a {
     color: #3B82C4;
     font-weight: 600;
-    border-left-color: #3B82C4;
+    border-right-color: #3B82C4;
   }
 }
 
