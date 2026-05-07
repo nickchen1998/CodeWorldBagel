@@ -111,7 +111,11 @@ const features = [
               即將上線
             </button>
           </div>
-          <NuxtLink to="/drinkla/privacy-policy" class="dl-privacy-link">隱私權政策</NuxtLink>
+          <div class="dl-secondary-links">
+            <NuxtLink to="/drinkla/privacy-policy" class="dl-privacy-link">隱私權政策</NuxtLink>
+            <span class="dl-link-divider">·</span>
+            <NuxtLink to="/drinkla/water-references" class="dl-privacy-link">飲水量文獻</NuxtLink>
+          </div>
         </div>
       </div>
     </section>
@@ -184,7 +188,11 @@ const features = [
             </svg>
             即將上線
           </button>
-          <NuxtLink to="/drinkla/privacy-policy" class="dl-privacy-link">隱私權政策</NuxtLink>
+          <div class="dl-secondary-links">
+            <NuxtLink to="/drinkla/privacy-policy" class="dl-privacy-link">隱私權政策</NuxtLink>
+            <span class="dl-link-divider">·</span>
+            <NuxtLink to="/drinkla/water-references" class="dl-privacy-link">飲水量文獻</NuxtLink>
+          </div>
         </div>
       </div>
     </section>
@@ -494,9 +502,15 @@ const features = [
   pointer-events: none;
 }
 
-.dl-privacy-link {
-  display: block;
+.dl-secondary-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   margin-top: 12px;
+}
+
+.dl-privacy-link {
   font-size: 13px;
   color: var(--color-text-light);
   transition: var(--transition);
@@ -504,6 +518,12 @@ const features = [
 
 .dl-privacy-link:hover {
   color: var(--dl-accent-dark);
+}
+
+.dl-link-divider {
+  font-size: 13px;
+  color: var(--color-text-light);
+  opacity: 0.6;
 }
 
 /* Responsive */
