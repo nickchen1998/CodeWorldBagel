@@ -61,6 +61,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
 
         <!-- 中文版 -->
         <article v-if="activeTab === 'zh'" class="article">
+          <p class="ai-note">本文使用 Claude Opus 4.7 協助彙整。</p>
           <p>你大概聽過「一天八杯水」、「2000 cc」、「體重乘 30」之類的說法。哪個才對？答案是：<strong>沒有單一數字適合所有人</strong>，但用幾個簡單的因素就能算出屬於你自己的合理範圍。</p>
           <p>這篇用最白話的方式，幫你理解三件事：</p>
           <ol>
@@ -272,6 +273,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
 
         <!-- English version -->
         <article v-else class="article">
+          <p class="ai-note">This article was compiled with the help of Claude Opus 4.7.</p>
           <p>You've probably heard "8 glasses a day," "2000 cc," or "weight × 30." Which is right? The answer is: <strong>no single number works for everyone</strong>, but a few simple factors will get you to a sensible range that fits you.</p>
           <p>This article explains three things in plain language:</p>
           <ol>
@@ -685,6 +687,17 @@ blockquote {
   font-size: 14px;
   color: var(--color-text-light);
   line-height: 1.7;
+}
+
+.ai-note {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--color-text-light);
+  background-color: var(--color-background-alt);
+  border-radius: 6px;
+  border-left: 3px solid #3B82C4;
 }
 
 @media (max-width: 768px) {
