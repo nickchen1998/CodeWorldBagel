@@ -18,6 +18,45 @@ useHead({
 })
 
 const activeTab = ref<'zh' | 'en'>('zh')
+
+const tocItems = [
+  { id: 's1', zh: '一、先打破一個迷思', en: '1. First, a Common Myth' },
+  { id: 's2', zh: '二、影響你需要多少水的四個關鍵', en: '2. Four Key Factors' },
+  { id: 's3', zh: '三、最簡單的個人化算法', en: '3. The Simplest Formula' },
+  { id: 's4', zh: '四、依環境調整：你今天在哪？', en: '4. Adjust for Environment' },
+  { id: 's5', zh: '五、特殊情況要多喝（或要小心）', en: '5. Special Cases' },
+  { id: 's6', zh: '六、好習慣比數字更重要', en: '6. Habits Matter More' },
+  { id: 's7', zh: '七、一個簡單的口訣', en: '7. A Simple Rule of Thumb' },
+  { id: 's8', zh: '八、最後提醒', en: '8. One Final Reminder' },
+  { id: 'refs', zh: '參考文獻', en: 'References' },
+]
+
+const activeId = ref<string>('s1')
+let observer: IntersectionObserver | null = null
+
+const setupObserver = async () => {
+  if (typeof window === 'undefined') return
+  await nextTick()
+  observer?.disconnect()
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          activeId.value = entry.target.id
+        }
+      }
+    },
+    { rootMargin: '-100px 0px -60% 0px', threshold: 0 }
+  )
+  tocItems.forEach(({ id }) => {
+    const el = document.getElementById(id)
+    if (el) observer!.observe(el)
+  })
+}
+
+onMounted(setupObserver)
+watch(activeTab, setupObserver)
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
@@ -59,6 +98,30 @@ const activeTab = ref<'zh' | 'en'>('zh')
           </button>
         </div>
 
+        <!-- Mobile / 窄螢幕：可收合 inline 目錄 -->
+        <details class="toc-mobile">
+          <summary>{{ activeTab === 'zh' ? '本篇目錄' : 'Table of Contents' }}</summary>
+          <ul>
+            <li v-for="item in tocItems" :key="item.id">
+              <a :href="`#${item.id}`">{{ activeTab === 'zh' ? item.zh : item.en }}</a>
+            </li>
+          </ul>
+        </details>
+
+        <!-- Desktop / 寬螢幕：右側 sticky 浮動目錄 -->
+        <aside class="toc-desktop" aria-label="Table of contents">
+          <p class="toc-title">{{ activeTab === 'zh' ? '本篇目錄' : 'On this page' }}</p>
+          <ul>
+            <li
+              v-for="item in tocItems"
+              :key="item.id"
+              :class="{ active: item.id === activeId }"
+            >
+              <a :href="`#${item.id}`">{{ activeTab === 'zh' ? item.zh : item.en }}</a>
+            </li>
+          </ul>
+        </aside>
+
         <!-- 中文版 -->
         <article v-if="activeTab === 'zh'" class="article">
           <p class="ai-note">本文使用 Claude Opus 4.7 協助彙整。</p>
@@ -70,7 +133,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <li>在冷氣房、戶外時要怎麼調整</li>
           </ol>
 
-          <section class="article-section">
+          <section id="s1" class="article-section">
             <h2>一、先打破一個迷思</h2>
             <blockquote><strong>「一天一定要喝滿 2000 cc」並不是真理。</strong></blockquote>
             <p>權威機構（歐洲 EFSA、美國 IOM）公布的數字是「<strong>平均建議攝取量</strong>」——女性大約 2 公升、男性大約 2.5 公升。但這個數字包含<strong>所有來源</strong>：白開水、茶、湯、咖啡，甚至蔬果裡的水分都算。</p>
@@ -78,7 +141,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <p>另外一件事：你的身體有「口渴」這個非常準的內建感測器。健康成人多半<strong>跟著口渴喝水就夠了</strong>，不必硬逼自己達標。</p>
           </section>
 
-          <section class="article-section">
+          <section id="s2" class="article-section">
             <h2>二、影響你需要多少水的四個關鍵</h2>
             <div class="table-wrap">
               <table class="references-table">
@@ -95,7 +158,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </div>
           </section>
 
-          <section class="article-section">
+          <section id="s3" class="article-section">
             <h2>三、最簡單的個人化算法</h2>
             <p>如果你想要一個快速的數字，用這個三段式公式（醫學上叫做 Holliday-Segar 法）：</p>
             <blockquote>
@@ -128,7 +191,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <p>這個算法從嬰幼兒到成人都適用，是世界各地醫院長年在用的標準。</p>
           </section>
 
-          <section class="article-section">
+          <section id="s4" class="article-section">
             <h2>四、依環境調整：你今天在哪？</h2>
             <p>算出基本量之後，根據你今天主要待的環境再「乘一個倍數」：</p>
             <div class="table-wrap">
@@ -153,7 +216,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ul>
           </section>
 
-          <section class="article-section">
+          <section id="s5" class="article-section">
             <h2>五、特殊情況要多喝（或要小心）</h2>
             <p><strong>這幾種情況通常需要再增加：</strong></p>
             <ul>
@@ -171,7 +234,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ul>
           </section>
 
-          <section class="article-section">
+          <section id="s6" class="article-section">
             <h2>六、好習慣比數字更重要</h2>
             <p>達不達標不是重點，<strong>喝水的方式</strong>反而決定了你會不會脫水：</p>
             <ol>
@@ -183,7 +246,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ol>
           </section>
 
-          <section class="article-section">
+          <section id="s7" class="article-section">
             <h2>七、一個簡單的口訣</h2>
             <blockquote>
               <strong>體重 × 30 cc</strong> 是大人在一般環境下、最快速的粗估值。<br>
@@ -193,13 +256,13 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </blockquote>
           </section>
 
-          <section class="article-section">
+          <section id="s8" class="article-section">
             <h2>八、最後提醒</h2>
             <p>水可以救命，但<strong>過量也會出事</strong>——短時間內喝下太多水（例如 1 小時超過 1.5 公升而沒有流汗）會稀釋血液中的鈉，造成「水中毒」。<strong>每天總攝取超過 4 公升、又不是在大量流汗</strong>的情境下，請先停一下、想想真的需要嗎。</p>
             <p>口渴、尿色、活動量、環境——把這四個指標當作你的「水分儀表板」，比任何一個固定數字都可靠。</p>
           </section>
 
-          <section class="article-section">
+          <section id="refs" class="article-section">
             <h2>參考文獻</h2>
             <p>本篇文章所有數字與建議皆引用自下列國際權威機構與同儕審查期刊。</p>
 
@@ -282,7 +345,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <li>How to adjust for air-conditioned rooms vs. the outdoors</li>
           </ol>
 
-          <section class="article-section">
+          <section id="s1" class="article-section">
             <h2>1. First, a Common Myth</h2>
             <blockquote><strong>"You must drink exactly 2000 cc per day"</strong> is not the truth.</blockquote>
             <p>The numbers from authoritative bodies (EFSA in Europe, IOM in the US) are <strong>average recommended intakes</strong> — about 2 L for women, 2.5 L for men. But these numbers cover <strong>all sources</strong>: plain water, tea, soup, coffee, even the water in fruits and vegetables.</p>
@@ -290,7 +353,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <p>One more thing: your body has a very accurate built-in sensor — thirst. For healthy adults, <strong>drinking when you feel thirsty is usually enough</strong>; you don't have to force yourself to hit a target.</p>
           </section>
 
-          <section class="article-section">
+          <section id="s2" class="article-section">
             <h2>2. Four Key Factors That Affect Your Water Needs</h2>
             <div class="table-wrap">
               <table class="references-table">
@@ -307,7 +370,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </div>
           </section>
 
-          <section class="article-section">
+          <section id="s3" class="article-section">
             <h2>3. The Simplest Personalized Formula</h2>
             <p>If you want a quick number, use this three-tier formula (medically known as the Holliday-Segar method):</p>
             <blockquote>
@@ -340,7 +403,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             <p>This formula works from infants to adults and has been the hospital standard worldwide for decades.</p>
           </section>
 
-          <section class="article-section">
+          <section id="s4" class="article-section">
             <h2>4. Adjust for Your Environment</h2>
             <p>Once you have your baseline, multiply by a factor for the environment you'll spend most of the day in:</p>
             <div class="table-wrap">
@@ -365,7 +428,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ul>
           </section>
 
-          <section class="article-section">
+          <section id="s5" class="article-section">
             <h2>5. Special Cases — Drink More (or Be Careful)</h2>
             <p><strong>These usually require more water:</strong></p>
             <ul>
@@ -383,7 +446,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ul>
           </section>
 
-          <section class="article-section">
+          <section id="s6" class="article-section">
             <h2>6. Habits Matter More Than Numbers</h2>
             <p>Hitting a target isn't the point. <strong>How you drink</strong> matters more for whether you stay hydrated:</p>
             <ol>
@@ -395,7 +458,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </ol>
           </section>
 
-          <section class="article-section">
+          <section id="s7" class="article-section">
             <h2>7. A Simple Rule of Thumb</h2>
             <blockquote>
               <strong>Body weight × 30 cc</strong> is the fastest rough estimate for adults in normal conditions.<br>
@@ -405,13 +468,13 @@ const activeTab = ref<'zh' | 'en'>('zh')
             </blockquote>
           </section>
 
-          <section class="article-section">
+          <section id="s8" class="article-section">
             <h2>8. One Final Reminder</h2>
             <p>Water can save your life, but <strong>too much can also cause harm</strong>. Drinking too much in a short time (e.g. more than 1.5 L in an hour without sweating) dilutes blood sodium, causing "water intoxication." If your daily total exceeds 4 L <strong>without heavy sweating</strong>, pause and ask whether you really need that much.</p>
             <p>Thirst, urine color, activity, environment — treat these four signals as your "hydration dashboard." They're more reliable than any fixed number.</p>
           </section>
 
-          <section class="article-section">
+          <section id="refs" class="article-section">
             <h2>References</h2>
             <p>All numbers and recommendations in this article are drawn from the international authorities and peer-reviewed journals listed below.</p>
 
@@ -580,6 +643,7 @@ const activeTab = ref<'zh' | 'en'>('zh')
   margin-top: 36px;
   padding-top: 36px;
   border-top: 1px solid var(--color-border);
+  scroll-margin-top: 100px;
 }
 
 .article-section h2 {
@@ -698,6 +762,131 @@ blockquote {
   background-color: var(--color-background-alt);
   border-radius: 6px;
   border-left: 3px solid #3B82C4;
+}
+
+/* TOC — mobile inline (collapsible) */
+.toc-mobile {
+  margin-bottom: 32px;
+  padding: 14px 18px;
+  background-color: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+.toc-mobile > summary {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toc-mobile > summary::-webkit-details-marker {
+  display: none;
+}
+
+.toc-mobile > summary::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--color-text-light);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.toc-mobile[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.toc-mobile ul {
+  list-style: none;
+  padding: 12px 0 0 0;
+  margin: 0;
+}
+
+.toc-mobile li {
+  margin: 0;
+}
+
+.toc-mobile a {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.toc-mobile a:hover {
+  color: #3B82C4;
+}
+
+/* TOC — desktop fixed sidebar */
+.toc-desktop {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .toc-mobile {
+    display: none;
+  }
+
+  .toc-desktop {
+    display: block;
+    position: fixed;
+    top: 120px;
+    left: calc(50% + 400px);
+    width: 220px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-left: 16px;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .toc-desktop .toc-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    margin-bottom: 12px;
+  }
+
+  .toc-desktop ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-desktop li {
+    margin: 0;
+  }
+
+  .toc-desktop a {
+    display: block;
+    padding: 6px 0 6px 12px;
+    margin-left: -1px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: var(--transition);
+  }
+
+  .toc-desktop a:hover {
+    color: #3B82C4;
+  }
+
+  .toc-desktop li.active a {
+    color: #3B82C4;
+    font-weight: 600;
+    border-left-color: #3B82C4;
+  }
 }
 
 @media (max-width: 768px) {
